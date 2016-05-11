@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="keep going, keep fighting"><title>iOS应用之 Ping++ 支付集成 | Huazhixi's blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">iOS应用之 Ping++ 支付集成</h1><a id="logo" href="/.">Huazhixi's blog</a><p class="description">keep going, keep fighting</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">iOS应用之 Ping++ 支付集成</h1><div class="post-meta">May 11, 2016<span> | </span><span class="category"><a href="/categories/ios开发/">ios开发</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><div class="post-content"><p>Ping++是一款非常不错的三方支付平台，简单，粗暴。<br><a id="more"></a></p>
+<blockquote>
+<p>历经这么长时间，终于安下心来记录一下项目中<a href="https://www.pingxx.com" target="_blank" rel="external">Ping++支付</a>的相关环节和内容，不得不说Ping++确实是一款很不错的三方支付平台,更重要的是方便快捷，<strong>简书</strong>App同样也运用了此三方平台。因为 <a href="https://www.pingxx.com/guidance/client/sdk/ios" target="_blank" rel="external">Ping++官方给的接入指南</a> 已经很详尽，所以这里就简单小结一下支付环节，附上项目中的部分代码。</p>
+</blockquote>
+<h3 id="1-导入SDK并添加相关设置"><a href="#1-导入SDK并添加相关设置" class="headerlink" title="1.导入SDK并添加相关设置"></a>1.导入SDK并添加相关设置</h3><ul>
+<li>当前项目中用的CocoaPods依赖管理工具来管理所需的第三方开源库（这样可以节省设置和更新第三方开源库的时间），导入 <strong>pod ‘Pingpp’, ‘~&gt; 2.1.0’</strong> (默认会包含支付宝、微信、银联和百度钱包)。</li>
+<li>由于项目中需要用到微信支付所以要添加 <code>URL Schemes:</code>,填入在微信平台上注册的应用程序的id(以wx开头的字符串)。如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-e65722c0396b3624.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加URL Types"></li>
+</ul>
+<h3 id="2-接入开启支付的代码"><a href="#2-接入开启支付的代码" class="headerlink" title="2.接入开启支付的代码"></a>2.接入开启支付的代码</h3><ul>
+<li><p>导入头文件</p>
+<pre><code>#import &quot;Pingpp.h&quot;
+</code></pre></li>
+<li><p>客户端从服务器获取 <code>charge</code> 对象</p>
+<pre><code>/**
+  *  确认支付订单，往服务器传递订单所需的参数，并返回charge对象
+ */
+- (void)buyCarAddOrderDataWithCarid_count:(NSString *)carid_count {
+    typeof(self) _weakSelf = self;
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@&quot;user_id&quot;];
+    NSString *URL = [NSString stringWithFormat:@&quot;%@/App/Sylm/yclist&quot;,SERVERURL];
+    NSMutableDictionary *paramas = [NSMutableDictionary dictionary];
+    paramas[@&quot;method&quot;] = @&quot;addorder&quot;;
+    paramas[@&quot;buy_status&quot;] = _buy_status;
+    paramas[@&quot;carid_count&quot;] = carid_count;
+    paramas[@&quot;user_id&quot;] = userID;
+    paramas[@&quot;ways&quot;] = self.ways; //客户端选择的支付方式参数
+    paramas[@&quot;addr_id&quot;] = self.addressModel.address_id;
+    [HXHttpTool post:URL params:paramas success:^(id json) {
+        LXLog(@&quot;%@&quot;, json);
+        // 返回的json就是charge对象，直接拿来用,传递给调用唤起支付的方法                
+        [_weakSelf wakeUpPingWithCharge:json];
+        } failure:^(NSError *error) {
+           [SVProgressHUD showErrorWithStatus:@&quot;调取支付失败&quot; maskType:SVProgressHUDMaskTypeGradient];
+            LXLog(@&quot;%@&quot;, error);
+        }];
+}
+</code></pre></li>
+</ul>
+<p>另：附上接口对照参数(仅供参考):</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1319216-a0565b80d85a4aba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="接口参数"></p>
+<ul>
+<li><p>利用<code>charge</code>对象唤起相应支付，其中kURLScheme为本应用的URL Schemes，在支付成功之后，正常跳转回应用。</p>
+<pre><code>/**
+  *  利用charge对象唤起支付
+ */
+- (void)wakeUpPingWithCharge:(NSString *)charge {
+        typeof(self) _weakSelf = self;
+        [Pingpp createPayment:charge
+            viewController:self
+               appURLScheme:kURLScheme
+            withCompletion:^(NSString *result, PingppError *error) {
+               if ([result isEqualToString:@&quot;success&quot;]) {
+                   // 支付成功
+                   [SVProgressHUD showSuccessWithStatus:@&quot;支付成功&quot; maskType:SVProgressHUDMaskTypeGradient];
+                   // 这个方法在模拟器上运行支付时会走，真机测试时，这个方法不会触发，没有真机时，进行页面跳转调的方法
+                   //[_weakSelf gotoSuccessVC];
+               } else {
+                   // 支付失败或取消
+                   LXLog(@&quot;Error: code=%lu msg=%@&quot;, error.code, [error getMsg]);
+                   [SVProgressHUD showErrorWithStatus:@&quot;取消支付&quot; maskType:SVProgressHUDMaskTypeGradient];
+               }
+       }];
+}
+</code></pre></li>
+</ul>
+<p>配置 kURLScheme，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-ff92cfa161c67b1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="应用Schemes"></p>
+<ul>
+<li><p>接收并处理支付结果，<strong>必须实现</strong></p>
+<blockquote>
+<p>在<code>AppDelegate.m</code>文件中实现支付结果回调的方法，这里只做ios9以上的了。</p>
+</blockquote>
+<pre><code>iOS 9 及以上
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString *,id&gt; *)options {
+    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
+        LXLog(@&quot;%@&quot;, result);
+        // 用通知实现支付成功的页面跳转
+        if ([result isEqualToString:@&quot;success&quot;]) {
+           [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;enterSuccessView&quot; object:nil];
+        }
+    }];
+   return YES;
+}
+</code></pre></li>
+</ul>
+<h3 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a>3.小结</h3><blockquote>
+<ul>
+<li>Ping++把支付订单的环节都放在服务器，所以客户端做的处理就少了许多，而且安全性更高(官方Demo用Swift写的),赞。</li>
+<li>用微信支付的时候，要用真机进行测试，且安装的有微信客户端</li>
+<li>iOS9限制http协议的访问，需要在info.plist文件中添加访问权限，而且还要添加应用白名单，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-9dcdb35be1629f76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加网络访问权限及白名单"></li>
+</ul>
+</blockquote>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2016/05/11/iOS应用之-Ping-支付集成/" data-id="cio2nyv0t0000w0agseqfewd9" class="article-share-link">分享到</a><div class="tags"><a href="/tags/iOS/">iOS</a></div><div class="post-nav"><a href="/2016/05/11/苹果开发者之“企业级账号”的申请流程及总结/" class="pre">苹果开发者之“企业级账号”的申请流程及总结</a><a href="/2016/05/11/不错的文字/" class="next">不错的文字</a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/ios开发/">ios开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/美言/">美言</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/励志/" style="font-size: 15px;">励志</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS开发之顶部状态栏statusBar颜色变化小结/">iOS开发之顶部状态栏statusBar颜色变化小结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/苹果开发者之“企业级账号”的申请流程及总结/">苹果开发者之“企业级账号”的申请流程及总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/iOS应用之-Ping-支付集成/">iOS应用之 Ping++ 支付集成</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/11/不错的文字/">不错的文字</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.jianshu.com/users/02b73e8b1f8d/latest_articles" title="个人简书" target="_blank">个人简书</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">© <a href="/." rel="nofollow">Huazhixi's blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=0.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
