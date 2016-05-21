@@ -650,9 +650,9 @@ figure.highlight,
   .codeblock .code,
   .codeblock .tag {
     background-color: inherit;
-    font-family: Menlo;
-    border: none;
-    padding: 0;
+    font-family: font-mono;
+    border: 1px;
+    padding: 0.1em 0.3em;
     margin: 0;
     cursor: text; }
   figure.highlight .gutter,
