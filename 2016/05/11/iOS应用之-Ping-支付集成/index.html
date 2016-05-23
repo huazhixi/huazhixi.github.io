@@ -90,15 +90,15 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/11/iOS应用之-Ping-支付集成/index.html">
 <meta property="og:site_name" content="Huazhixi's blog">
 <meta property="og:description" content="Ping++是一款非常不错的三方支付平台，简单，粗暴。">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-e65722c0396b3624.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-a0565b80d85a4aba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-ff92cfa161c67b1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-9dcdb35be1629f76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-05-11T09:16:48.000Z">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--1.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--2.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--3.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--4.png">
+<meta property="og:updated_time" content="2016-05-23T01:46:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS应用之 Ping++ 支付集成">
 <meta name="twitter:description" content="Ping++是一款非常不错的三方支付平台，简单，粗暴。">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1319216-e65722c0396b3624.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--1.png">
 
 
 
@@ -318,7 +318,7 @@
 </blockquote>
 <h3 id="1-导入SDK并添加相关设置"><a href="#1-导入SDK并添加相关设置" class="headerlink" title="1.导入SDK并添加相关设置"></a>1.导入SDK并添加相关设置</h3><ul>
 <li>当前项目中用的CocoaPods依赖管理工具来管理所需的第三方开源库（这样可以节省设置和更新第三方开源库的时间），导入 <strong>pod ‘Pingpp’, ‘~&gt; 2.1.0’</strong> (默认会包含支付宝、微信、银联和百度钱包)。</li>
-<li>由于项目中需要用到微信支付所以要添加 <code>URL Schemes:</code>,填入在微信平台上注册的应用程序的id(以wx开头的字符串)。如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-e65722c0396b3624.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加URL Types"></li>
+<li>由于项目中需要用到微信支付所以要添加 <code>URL Schemes:</code>,填入在微信平台上注册的应用程序的id(以wx开头的字符串)。如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--1.png" alt="添加URL Types"></li>
 </ul>
 <h3 id="2-接入开启支付的代码"><a href="#2-接入开启支付的代码" class="headerlink" title="2.接入开启支付的代码"></a>2.接入开启支付的代码</h3><ul>
 <li><p>导入头文件</p>
@@ -351,7 +351,7 @@
 </code></pre></li>
 </ul>
 <p>另：附上接口对照参数(仅供参考):</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1319216-a0565b80d85a4aba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="接口参数"></p>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--2.png" alt="接口参数"></p>
 <ul>
 <li><p>利用<code>charge</code>对象唤起相应支付，其中kURLScheme为本应用的URL Schemes，在支付成功之后，正常跳转回应用。</p>
 <pre><code>/**
@@ -377,7 +377,7 @@
 }
 </code></pre></li>
 </ul>
-<p>配置 kURLScheme，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-ff92cfa161c67b1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="应用Schemes"></p>
+<p>配置 kURLScheme，如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--3.png" alt="应用Schemes"></p>
 <ul>
 <li><p>接收并处理支付结果，<strong>必须实现</strong></p>
 <blockquote>
@@ -401,7 +401,7 @@
 <ul>
 <li>Ping++把支付订单的环节都放在服务器，所以客户端做的处理就少了许多，而且安全性更高(官方Demo用Swift写的),赞。</li>
 <li>用微信支付的时候，要用真机进行测试，且安装的有微信客户端</li>
-<li>iOS9限制http协议的访问，需要在info.plist文件中添加访问权限，而且还要添加应用白名单，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-9dcdb35be1629f76.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="添加网络访问权限及白名单"></li>
+<li>iOS9限制http协议的访问，需要在info.plist文件中添加访问权限，而且还要添加应用白名单，如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--4.png" alt="添加网络访问权限及白名单"></li>
 </ul>
 </blockquote>
 
