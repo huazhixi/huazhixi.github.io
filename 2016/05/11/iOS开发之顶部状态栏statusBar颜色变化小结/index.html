@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-6d675b9914a0d62d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-42c79dc81a6bc2f5.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2016-05-25T02:47:34.000Z">
+<meta property="og:updated_time" content="2016-05-25T02:51:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之顶部状态栏statusBar颜色变化小结">
 <meta name="twitter:description" content="iPhone应用顶部状态栏的灵活运用。">
@@ -377,13 +377,15 @@
 <blockquote>
 <p>在网上搜了一堆结果，没有一个全面总结的，太零碎，不符合需求，现在就整理最符合自己的小结。</p>
 </blockquote>
-<h2 id="1-单个视图View没有导航控制器包装的情况下"><a href="#1-单个视图View没有导航控制器包装的情况下" class="headerlink" title="1.单个视图View没有导航控制器包装的情况下"></a>1.单个视图View没有导航控制器包装的情况下</h2><ul>
+<h3 id="1-单个视图View没有导航控制器包装的情况下"><a href="#1-单个视图View没有导航控制器包装的情况下" class="headerlink" title="1.单个视图View没有导航控制器包装的情况下"></a>1.单个视图View没有导航控制器包装的情况下</h3><ul>
 <li>默认情况下，启动状态栏和进入程序后的状态栏都是默认的颜色-<strong>黑色</strong>，如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-17384c3c4b597fc4.gif?imageMogr2/auto-orient/strip" alt="默认情况.gif"></li>
 </ul>
-<h3 id="1-只设置启动状态栏颜色改变-白色-，而视图中状态栏不变化-默认黑色-，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图："><a href="#1-只设置启动状态栏颜色改变-白色-，而视图中状态栏不变化-默认黑色-，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图：" class="headerlink" title="1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图："></a>1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图：</h3><p><img src="http://upload-images.jianshu.io/upload_images/1319216-f326a4597986f0fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在General里面做的修改"></p>
+<p>1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1319216-f326a4597986f0fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在General里面做的修改"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-5ed3a67aee506120.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Info.plist文件中生成的相应配置"></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-c5e6843e5f3e1c4f.gif?imageMogr2/auto-orient/strip" alt="只有启动栏颜色改变.gif"></p>
-<h3 id="2-设置启动状态栏颜色改变-白色-，视图中的状态栏也变成白色-保持上面的设置-，有两种设置方式："><a href="#2-设置启动状态栏颜色改变-白色-，视图中的状态栏也变成白色-保持上面的设置-，有两种设置方式：" class="headerlink" title="2.设置启动状态栏颜色改变(白色)，视图中的状态栏也变成白色(保持上面的设置)，有两种设置方式："></a>2.设置启动状态栏颜色改变(白色)，视图中的状态栏也变成白色(保持上面的设置)，有两种设置方式：</h3><blockquote>
+<p>2.设置启动状态栏颜色改变(白色)，视图中的状态栏也变成白色(保持上面的设置)，有两种设置方式：</p>
+<blockquote>
 <p>a.在Info.plist里面添加一行<code>View controller-based status bar appearance ＝ NO</code> 即可，如下图：</p>
 </blockquote>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-6d675b9914a0d62d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在Info.plist里面设置"></p>
@@ -392,14 +394,18 @@
 </blockquote>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-daafefeb57dc6557.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在.m文件中添加代码"></p>
 <p>效果如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-ac33c20707e9c77a.gif?imageMogr2/auto-orient/strip" alt="启动和视图一起改变.gif"></p>
-<h3 id="3-设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色-黑色-，没有做1-中的任何设置情况下，在控制器-m文件中添加如下代码-即2-gt-b-图所示-："><a href="#3-设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色-黑色-，没有做1-中的任何设置情况下，在控制器-m文件中添加如下代码-即2-gt-b-图所示-：" class="headerlink" title="3.设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.-&gt;b.图所示)："></a>3.设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.-&gt;b.图所示)：</h3><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="built_in">UIStatusBarStyle</span>)preferredStatusBarStyle &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIStatusBarStyleLightContent</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>3.设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.-&gt;b.图所示)：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="built_in">UIStatusBarStyle</span>)preferredStatusBarStyle &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIStatusBarStyleLightContent</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>效果如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-4e0c0009a847e75b.gif?imageMogr2/auto-orient/strip" alt="只改变视图状态栏颜色.gif"></p>
-<h2 id="2-视图作为导航控制器的根控制器的情况下"><a href="#2-视图作为导航控制器的根控制器的情况下" class="headerlink" title="2.视图作为导航控制器的根控制器的情况下"></a>2.视图作为导航控制器的根控制器的情况下</h2><ul>
+<p>###2.视图作为导航控制器的根控制器的情况下</p>
+<ul>
 <li>在这种情况下，启动画面和视图的状态栏都是默认颜色(黑色)，即使是在AppDelegate.m文件的didFinishLaunching的方法中添加下面代码：<br><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code><br>并且在视图控制器中添加如1.-&gt;2.-&gt;b.的图中的代码也是没有效果的。</li>
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-098fc15be3a0c66f.gif?imageMogr2/auto-orient/strip" alt="各种无效果.gif"></p>
-<h3 id="1-设置启动画面的状态栏为白色，视图中的状态栏为默认-黑色-，如1-gt-1-中的设置即可，效果如下图："><a href="#1-设置启动画面的状态栏为白色，视图中的状态栏为默认-黑色-，如1-gt-1-中的设置即可，效果如下图：" class="headerlink" title="1.设置启动画面的状态栏为白色，视图中的状态栏为默认(黑色)，如1.-&gt;1.中的设置即可，效果如下图："></a>1.设置启动画面的状态栏为白色，视图中的状态栏为默认(黑色)，如1.-&gt;1.中的设置即可，效果如下图：</h3><p><img src="http://upload-images.jianshu.io/upload_images/1319216-be60390acb8e6e58.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-1.gif"><br>此时，如果想要视图的状态栏变为白色，不管是在AppDelegate.m文件中添加<br><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code>同时在视图控制器中添加1.-&gt;2.-&gt;b.的图中的代码，都是然并卵，已测试。</p>
-<h3 id="2-设置启动画面和视图中的状态栏颜色都为白色-保持2-gt-1-中的设置-，方式同样有两种："><a href="#2-设置启动画面和视图中的状态栏颜色都为白色-保持2-gt-1-中的设置-，方式同样有两种：" class="headerlink" title="2.设置启动画面和视图中的状态栏颜色都为白色(保持2.-&gt;1.中的设置)，方式同样有两种："></a>2.设置启动画面和视图中的状态栏颜色都为白色(保持2.-&gt;1.中的设置)，方式同样有两种：</h3><blockquote>
+<p>1.设置启动画面的状态栏为白色，视图中的状态栏为默认(黑色)，如1.-&gt;1.中的设置即可，效果如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1319216-be60390acb8e6e58.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-1.gif"><br>此时，如果想要视图的状态栏变为白色，不管是在AppDelegate.m文件中添加<br><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code>同时在视图控制器中添加1.-&gt;2.-&gt;b.的图中的代码，都是然并卵，已测试。</p>
+<p>2.设置启动画面和视图中的状态栏颜色都为白色(保持2.-&gt;1.中的设置)，方式同样有两种：</p>
+<blockquote>
 <p>a.在Info.plist里面添加一行View controller-based status bar appearance ＝ NO 即可，如下图：</p>
 </blockquote>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-6d675b9914a0d62d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在Info.plist里面设置"></p>
@@ -410,10 +416,15 @@
 <p>同时需要在导航控制器.m文件中添加下面的代码才能达到效果(<strong>careful</strong>)</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="built_in">UIViewController</span> *)childViewControllerForStatusBarStyle&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">self</span>.topViewController;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-42c79dc81a6bc2f5.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-2.gif"></p>
-<h3 id="3-只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认-黑色-，把Info-plist文件中的-Status-bar-style-UIStatusBarStyleLightContent设置去掉，保持2-gt-2-gt-b-中的代码设置即可，效果如下图："><a href="#3-只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认-黑色-，把Info-plist文件中的-Status-bar-style-UIStatusBarStyleLightContent设置去掉，保持2-gt-2-gt-b-中的代码设置即可，效果如下图：" class="headerlink" title="3.只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 Status bar style = UIStatusBarStyleLightContent设置去掉，保持2.-&gt;2.-&gt;b.中的代码设置即可，效果如下图："></a>3.只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 <code>Status bar style = UIStatusBarStyleLightContent</code>设置去掉，保持2.-&gt;2.-&gt;b.中的代码设置即可，效果如下图：</h3><p><img src="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-3.gif"></p>
-<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a>3.小结</h2><blockquote>
-<p>1.在AppDelegate.m文件中添加如下代码，没有一点儿毛用，<br><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code><br><code>[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];(被弃用)</code><br>2.目前所测试均为系统样式，不包含自定义的情况。</p>
-<p>3.以上如有疏漏或错误的地方，忘及时沟通交流，尽快更正，不能传播误导信息。</p>
+<p>2.只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 <code>Status bar style = UIStatusBarStyleLightContent</code>设置去掉，保持2.-&gt;2.-&gt;b.中的代码设置即可，效果如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-3.gif"></p>
+<p>###3.小结</p>
+<blockquote>
+<p>1.在AppDelegate.m文件中添加如下代码，没有一点儿毛用，</p>
+</blockquote>
+<p><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code><br><code>[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];(被弃用)</code>&gt;</p>
+<blockquote>
+<p>2.目前所测试均为系统样式，不包含自定义的情。&gt; 3.以上如有疏漏或错误的地方，忘及时沟通交流，尽快更正，不能传播误导信息。</p>
 </blockquote>
 
       
@@ -614,7 +625,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-单个视图View没有导航控制器包装的情况下"><span class="nav-number">1.</span> <span class="nav-text">1.单个视图View没有导航控制器包装的情况下</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-只设置启动状态栏颜色改变-白色-，而视图中状态栏不变化-默认黑色-，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图："><span class="nav-number">1.1.</span> <span class="nav-text">1.只设置启动状态栏颜色改变(白色)，而视图中状态栏不变化(默认黑色)，做如下的设置即可，两种方式不管先设置哪一个，另一个都会相应的变化，如下图：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-设置启动状态栏颜色改变-白色-，视图中的状态栏也变成白色-保持上面的设置-，有两种设置方式："><span class="nav-number">1.2.</span> <span class="nav-text">2.设置启动状态栏颜色改变(白色)，视图中的状态栏也变成白色(保持上面的设置)，有两种设置方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色-黑色-，没有做1-中的任何设置情况下，在控制器-m文件中添加如下代码-即2-gt-b-图所示-："><span class="nav-number">1.3.</span> <span class="nav-text">3.设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.->b.图所示)：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-视图作为导航控制器的根控制器的情况下"><span class="nav-number">2.</span> <span class="nav-text">2.视图作为导航控制器的根控制器的情况下</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-设置启动画面的状态栏为白色，视图中的状态栏为默认-黑色-，如1-gt-1-中的设置即可，效果如下图："><span class="nav-number">2.1.</span> <span class="nav-text">1.设置启动画面的状态栏为白色，视图中的状态栏为默认(黑色)，如1.->1.中的设置即可，效果如下图：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-设置启动画面和视图中的状态栏颜色都为白色-保持2-gt-1-中的设置-，方式同样有两种："><span class="nav-number">2.2.</span> <span class="nav-text">2.设置启动画面和视图中的状态栏颜色都为白色(保持2.->1.中的设置)，方式同样有两种：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认-黑色-，把Info-plist文件中的-Status-bar-style-UIStatusBarStyleLightContent设置去掉，保持2-gt-2-gt-b-中的代码设置即可，效果如下图："><span class="nav-number">2.3.</span> <span class="nav-text">3.只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 Status bar style = UIStatusBarStyleLightContent设置去掉，保持2.->2.->b.中的代码设置即可，效果如下图：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-小结"><span class="nav-number">3.</span> <span class="nav-text">3.小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-单个视图View没有导航控制器包装的情况下"><span class="nav-text">1.单个视图View没有导航控制器包装的情况下</span></a></li></ol></div>
             
           </div>
         </section>
