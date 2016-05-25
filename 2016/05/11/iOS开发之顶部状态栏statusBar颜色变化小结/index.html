@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-6d675b9914a0d62d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-42c79dc81a6bc2f5.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2016-05-23T02:37:07.000Z">
+<meta property="og:updated_time" content="2016-05-25T02:37:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之顶部状态栏statusBar颜色变化小结">
 <meta name="twitter:description" content="iPhone应用顶部状态栏的灵活运用。">
@@ -395,10 +395,8 @@
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-daafefeb57dc6557.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="在.m文件中添加代码"></p>
 <p>效果如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-ac33c20707e9c77a.gif?imageMogr2/auto-orient/strip" alt="启动和视图一起改变.gif"></p>
 <p>3.设置视图中状态栏的颜色为白色，启动程序时的状态栏为默认颜色(黑色)，没有做1.中的任何设置情况下，在控制器.m文件中添加如下代码(即2.-&gt;b.图所示)：</p>
-<pre><code>- (UIStatusBarStyle)preferredStatusBarStyle {
-        return UIStatusBarStyleLightContent;
-   }
-</code></pre><p>效果如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-4e0c0009a847e75b.gif?imageMogr2/auto-orient/strip" alt="只改变视图状态栏颜色.gif"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- (UIStatusBarStyle)preferredStatusBarStyle &#123;</span><br><span class="line">        <span class="keyword">return</span> UIStatusBarStyleLightContent;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>效果如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-4e0c0009a847e75b.gif?imageMogr2/auto-orient/strip" alt="只改变视图状态栏颜色.gif"></p>
 <p>###2.视图作为导航控制器的根控制器的情况下</p>
 <ul>
 <li>在这种情况下，启动画面和视图的状态栏都是默认颜色(黑色)，即使是在AppDelegate.m文件的didFinishLaunching的方法中添加下面代码：<br><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code><br>并且在视图控制器中添加如1.-&gt;2.-&gt;b.的图中的代码也是没有效果的。</li>
@@ -414,14 +412,10 @@
 <blockquote>
 <p>b.此时如果单单在视图控制器.m文件中添加如下代码是不够的，</p>
 </blockquote>
-<pre><code>- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-</code></pre><p>同时需要在导航控制器.m文件中添加下面的代码才能达到效果(<strong>careful</strong>)</p>
-<pre><code>- (UIViewController *)childViewControllerForStatusBarStyle{
-       return self.topViewController;
-}
-</code></pre><p>如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-42c79dc81a6bc2f5.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-2.gif"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- (UIStatusBarStyle)preferredStatusBarStyle &#123;</span><br><span class="line">    <span class="keyword">return</span> UIStatusBarStyleLightContent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同时需要在导航控制器.m文件中添加下面的代码才能达到效果(<strong>careful</strong>)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">- (UIViewController *)childViewControllerForStatusBarStyle&#123;</span><br><span class="line">       <span class="keyword">return</span> self.topViewController;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下图：<br><img src="http://upload-images.jianshu.io/upload_images/1319216-42c79dc81a6bc2f5.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-2.gif"></p>
 <p>2.只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 <code>Status bar style = UIStatusBarStyleLightContent</code>设置去掉，保持2.-&gt;2.-&gt;b.中的代码设置即可，效果如下图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-3.gif"></p>
 <p>###3.小结</p>
