@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-6d675b9914a0d62d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-42c79dc81a6bc2f5.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2016-05-25T03:03:02.000Z">
+<meta property="og:updated_time" content="2016-05-25T03:04:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发之顶部状态栏statusBar颜色变化小结">
 <meta name="twitter:description" content="iPhone应用顶部状态栏的灵活运用。">
@@ -418,11 +418,7 @@
 <p>2.只设置视图控制器状态栏颜色为白色，启动画面的状态栏为默认(黑色)，把Info.plist文件中的 <code>Status bar style = UIStatusBarStyleLightContent</code>设置去掉，保持2.-&gt;2.-&gt;b.中的代码设置即可，效果如下图：</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1319216-e2488236e6699560.gif?imageMogr2/auto-orient/strip" alt="导航栏包装的情况-3.gif"></p>
 <h4 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a>3.小结</h4><blockquote>
-<p>1.在AppDelegate.m文件中添加如下代码，没有一点儿毛用，</p>
-</blockquote>
-<p><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code><br><code>[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];(被弃用)</code>&gt;</p>
-<blockquote>
-<p>2.目前所测试均为系统样式，不包含自定义的情。&gt; 3.以上如有疏漏或错误的地方，忘及时沟通交流，尽快更正，不能传播误导信息。</p>
+<p>1.在AppDelegate.m文件中添加如下代码，没有一点儿毛用<br><code>[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;</code><br><code>[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];(被弃用)</code>&gt;<br>2.目前所测试均为系统样式，不包含自定义的情。<br>3.以上如有疏漏或错误的地方，忘及时沟通交流，尽快更正，不能传播误导信息。</p>
 </blockquote>
 
       
