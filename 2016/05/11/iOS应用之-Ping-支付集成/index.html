@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--2.png">
 <meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--3.png">
 <meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/523--4.png">
-<meta property="og:updated_time" content="2016-05-25T02:03:02.000Z">
+<meta property="og:updated_time" content="2016-05-25T02:32:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS应用之 Ping++ 支付集成">
 <meta name="twitter:description" content="Ping++是一款非常不错的三方支付平台，简单，粗暴。">
@@ -368,87 +368,32 @@
 <blockquote>
 <p>历经这么长时间，终于安下心来记录一下项目中<a href="https://www.pingxx.com" target="_blank" rel="external">Ping++支付</a>的相关环节和内容，不得不说Ping++确实是一款很不错的三方支付平台,更重要的是方便快捷，<strong>简书</strong>App同样也运用了此三方平台。因为 <a href="https://www.pingxx.com/guidance/client/sdk/ios" target="_blank" rel="external">Ping++官方给的接入指南</a> 已经很详尽，所以这里就简单小结一下支付环节，附上项目中的部分代码。</p>
 </blockquote>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建左边表格</span></span><br><span class="line">- (<span class="keyword">void</span>)creatLeft</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//左边表格</span></span><br><span class="line">    <span class="keyword">self</span>.leftTablew=[[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">0</span>, <span class="number">0</span>, kLeftWidth, kScreenH)];</span><br><span class="line">    <span class="keyword">self</span>.leftTablew.dataSource=<span class="keyword">self</span>;</span><br><span class="line">    <span class="keyword">self</span>.leftTablew.delegate=<span class="keyword">self</span>;</span><br><span class="line">    <span class="comment">//   self.leftTablew.scrollEnabled = NO;</span></span><br><span class="line">    <span class="keyword">self</span>.leftTablew.showsVerticalScrollIndicator = <span class="literal">NO</span>;</span><br><span class="line">    [<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.leftTablew];</span><br><span class="line">    <span class="keyword">self</span>.leftTablew.backgroundColor=<span class="keyword">self</span>.leftSelectBgColor;</span><br><span class="line">    <span class="keyword">self</span>.leftTablew.separatorColor=<span class="keyword">self</span>.leftSeparatorColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="1-导入SDK并添加相关设置"><a href="#1-导入SDK并添加相关设置" class="headerlink" title="1.导入SDK并添加相关设置"></a>1.导入SDK并添加相关设置</h3><ul>
 <li>当前项目中用的CocoaPods依赖管理工具来管理所需的第三方开源库（这样可以节省设置和更新第三方开源库的时间），导入 <strong>pod ‘Pingpp’, ‘~&gt; 2.1.0’</strong> (默认会包含支付宝、微信、银联和百度钱包)。</li>
 <li>由于项目中需要用到微信支付所以要添加 <code>URL Schemes:</code>,填入在微信平台上注册的应用程序的id(以wx开头的字符串)。如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--1.png" alt="添加URL Types"></li>
 </ul>
 <h3 id="2-接入开启支付的代码"><a href="#2-接入开启支付的代码" class="headerlink" title="2.接入开启支付的代码"></a>2.接入开启支付的代码</h3><ul>
-<li><p>导入头文件</p>
-<pre><code>#import &quot;Pingpp.h&quot;
-</code></pre></li>
-<li><p>客户端从服务器获取 <code>charge</code> 对象</p>
-<pre><code>/**
-  *  确认支付订单，往服务器传递订单所需的参数，并返回charge对象
- */
-- (void)buyCarAddOrderDataWithCarid_count:(NSString *)carid_count {
-    typeof(self) _weakSelf = self;
-    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@&quot;user_id&quot;];
-    NSString *URL = [NSString stringWithFormat:@&quot;%@/App/Sylm/yclist&quot;,SERVERURL];
-    NSMutableDictionary *paramas = [NSMutableDictionary dictionary];
-    paramas[@&quot;method&quot;] = @&quot;addorder&quot;;
-    paramas[@&quot;buy_status&quot;] = _buy_status;
-    paramas[@&quot;carid_count&quot;] = carid_count;
-    paramas[@&quot;user_id&quot;] = userID;
-    paramas[@&quot;ways&quot;] = self.ways; //客户端选择的支付方式参数
-    paramas[@&quot;addr_id&quot;] = self.addressModel.address_id;
-    [HXHttpTool post:URL params:paramas success:^(id json) {
-        LXLog(@&quot;%@&quot;, json);
-        // 返回的json就是charge对象，直接拿来用,传递给调用唤起支付的方法                
-        [_weakSelf wakeUpPingWithCharge:json];
-        } failure:^(NSError *error) {
-           [SVProgressHUD showErrorWithStatus:@&quot;调取支付失败&quot; maskType:SVProgressHUDMaskTypeGradient];
-            LXLog(@&quot;%@&quot;, error);
-        }];
-</code></pre></li>
+<li>导入头文件</li>
 </ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"Pingpp.h"</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>客户端从服务器获取 <code>charge</code> 对象</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">  *  确认支付订单，往服务器传递订单所需的参数，并返回charge对象</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)buyCarAddOrderDataWithCarid_count:(<span class="built_in">NSString</span> *)carid_count &#123;</span><br><span class="line">    <span class="keyword">typeof</span>(<span class="keyword">self</span>) _weakSelf = <span class="keyword">self</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *userID = [[<span class="built_in">NSUserDefaults</span> standardUserDefaults] objectForKey:<span class="string">@"user_id"</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *URL = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/App/Sylm/yclist"</span>,SERVERURL];</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *paramas = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    paramas[<span class="string">@"method"</span>] = <span class="string">@"addorder"</span>;</span><br><span class="line">    paramas[<span class="string">@"buy_status"</span>] = _buy_status;</span><br><span class="line">    paramas[<span class="string">@"carid_count"</span>] = carid_count;</span><br><span class="line">    paramas[<span class="string">@"user_id"</span>] = userID;</span><br><span class="line">    paramas[<span class="string">@"ways"</span>] = <span class="keyword">self</span>.ways; <span class="comment">//客户端选择的支付方式参数</span></span><br><span class="line">    paramas[<span class="string">@"addr_id"</span>] = <span class="keyword">self</span>.addressModel.address_id;</span><br><span class="line">    [HXHttpTool post:URL params:paramas success:^(<span class="keyword">id</span> json) &#123;</span><br><span class="line">        LXLog(<span class="string">@"%@"</span>, json);</span><br><span class="line">        <span class="comment">// 返回的json就是charge对象，直接拿来用,传递给调用唤起支付的方法                </span></span><br><span class="line">        [_weakSelf wakeUpPingWithCharge:json];</span><br><span class="line">        &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">           [SVProgressHUD showErrorWithStatus:<span class="string">@"调取支付失败"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">            LXLog(<span class="string">@"%@"</span>, error);</span><br><span class="line">        &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另：附上接口对照参数(仅供参考):</p>
 <p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--2.png" alt="接口参数"></p>
 <ul>
-<li><p>利用<code>charge</code>对象唤起相应支付，其中kURLScheme为本应用的URL Schemes，在支付成功之后，正常跳转回应用。</p>
-<pre><code>/**
-  *  利用charge对象唤起支付
- */
-- (void)wakeUpPingWithCharge:(NSString *)charge {
-        typeof(self) _weakSelf = self;
-        [Pingpp createPayment:charge
-            viewController:self
-               appURLScheme:kURLScheme
-            withCompletion:^(NSString *result, PingppError *error) {
-               if ([result isEqualToString:@&quot;success&quot;]) {
-                   // 支付成功
-                   [SVProgressHUD showSuccessWithStatus:@&quot;支付成功&quot; maskType:SVProgressHUDMaskTypeGradient];
-                   // 这个方法在模拟器上运行支付时会走，真机测试时，这个方法不会触发，没有真机时，进行页面跳转调的方法
-                   //[_weakSelf gotoSuccessVC];
-               } else {
-                   // 支付失败或取消
-                   LXLog(@&quot;Error: code=%lu msg=%@&quot;, error.code, [error getMsg]);
-                   [SVProgressHUD showErrorWithStatus:@&quot;取消支付&quot; maskType:SVProgressHUDMaskTypeGradient];
-               }
-       }];
-}
-</code></pre></li>
+<li>利用<code>charge</code>对象唤起相应支付，其中kURLScheme为本应用的URL Schemes，在支付成功之后，正常跳转回应用。</li>
 </ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">  *  利用charge对象唤起支付</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)wakeUpPingWithCharge:(<span class="built_in">NSString</span> *)charge &#123;</span><br><span class="line">        <span class="keyword">typeof</span>(<span class="keyword">self</span>) _weakSelf = <span class="keyword">self</span>;</span><br><span class="line">        [Pingpp createPayment:charge</span><br><span class="line">            viewController:<span class="keyword">self</span></span><br><span class="line">               appURLScheme:kURLScheme</span><br><span class="line">            withCompletion:^(<span class="built_in">NSString</span> *result, PingppError *error) &#123;</span><br><span class="line">               <span class="keyword">if</span> ([result isEqualToString:<span class="string">@"success"</span>]) &#123;</span><br><span class="line">                   <span class="comment">// 支付成功</span></span><br><span class="line">                   [SVProgressHUD showSuccessWithStatus:<span class="string">@"支付成功"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">                   <span class="comment">// 这个方法在模拟器上运行支付时会走，真机测试时，这个方法不会触发，没有真机时，进行页面跳转调的方法</span></span><br><span class="line">                   <span class="comment">//[_weakSelf gotoSuccessVC];</span></span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                   <span class="comment">// 支付失败或取消</span></span><br><span class="line">                   LXLog(<span class="string">@"Error: code=%lu msg=%@"</span>, error.code, [error getMsg]);</span><br><span class="line">                   [SVProgressHUD showErrorWithStatus:<span class="string">@"取消支付"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">               &#125;</span><br><span class="line">       &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>配置 kURLScheme，如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/523--3.png" alt="应用Schemes"></p>
 <ul>
-<li><p>接收并处理支付结果，<strong>必须实现</strong></p>
-<blockquote>
+<li>接收并处理支付结果，<strong>必须实现</strong><blockquote>
 <p>在<code>AppDelegate.m</code>文件中实现支付结果回调的方法，这里只做ios9以上的了。</p>
 </blockquote>
-<pre><code>iOS 9 及以上
-
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary&lt;NSString *,id&gt; *)options {
-    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
-        LXLog(@&quot;%@&quot;, result);
-        // 用通知实现支付成功的页面跳转
-        if ([result isEqualToString:@&quot;success&quot;]) {
-           [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;enterSuccessView&quot; object:nil];
-        }
-    }];
-   return YES;
-}
-</code></pre></li>
+</li>
 </ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">iOS <span class="number">9</span> 及以上</span><br><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)app openURL:(<span class="built_in">NSURL</span> *)url options:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSString</span> *,<span class="keyword">id</span>&gt; *)options &#123;</span><br><span class="line">    [Pingpp handleOpenURL:url withCompletion:^(<span class="built_in">NSString</span> *result, PingppError *error) &#123;</span><br><span class="line">        LXLog(<span class="string">@"%@"</span>, result);</span><br><span class="line">        <span class="comment">// 用通知实现支付成功的页面跳转</span></span><br><span class="line">        <span class="keyword">if</span> ([result isEqualToString:<span class="string">@"success"</span>]) &#123;</span><br><span class="line">           [[<span class="built_in">NSNotificationCenter</span> defaultCenter] postNotificationName:<span class="string">@"enterSuccessView"</span> object:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a>3.小结</h3><blockquote>
 <ul>
 <li>Ping++把支付订单的环节都放在服务器，所以客户端做的处理就少了许多，而且安全性更高(官方Demo用Swift写的),赞。</li>
