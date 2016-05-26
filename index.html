@@ -293,6 +293,284 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/25/iOS应用之银联支付集成/" itemprop="url">
+                  iOS应用之银联支付集成
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T12:11:26+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/25/iOS应用之银联支付集成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/25/iOS应用之银联支付集成/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<blockquote>
+<ul>
+<li>借助于前几天项目刚刚上线，也在此继续分享下银联支付的相关方法和总结。本次分享的为<strong>支持纯无卡交易</strong>。</li>
+<li>鉴于上两次的支付分享，本次所做的内容比较简单，签名工作移到了后台进行，前端所做的工作非常少，只需要往后台POST过去商品价格，后台对订单进行相应的签名，返回签名后的<strong>tn字符串</strong>即可。</li>
+</ul>
+</blockquote>
+<h3 id="1-事前准备工作"><a href="#1-事前准备工作" class="headerlink" title="1.事前准备工作"></a>1.事前准备工作</h3><ul>
+<li>添加工程所需的<a href="http://yun.baidu.com/s/1eRrppEa" target="_blank" rel="external">银联支付(iOS)SDK</a>,如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png" alt="导入工程中的SDK"></li>
+</ul>
+<h3 id="2-开发流程"><a href="#2-开发流程" class="headerlink" title="2. 开发流程"></a>2. 开发流程</h3><ul>
+<li>导入头文件 <code>#import &quot;UPPayPlugin.h&quot;</code> 以及设置代理 <code>&lt;UPPayPluginDelegate&gt;</code> </li>
+<li>触发唤起银联支付的方法（本次对订单的签名处理都在后台进行，在此附上后台<a href="http://yun.baidu.com/share/link?shareid=1963902588&amp;uk=1965504264" target="_blank" rel="external">银联支付SDK</a>）。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 银联支付相关方法</span></span><br><span class="line">- (<span class="keyword">IBAction</span>)yinlianPayAct &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *strUrl = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/App/Index/index/"</span>,SERVERURL]; <span class="comment">//从后台获取tn字符串的API地址</span></span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *params = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    params[<span class="string">@"money"</span>] = payCount; <span class="comment">// 支付金额</span></span><br><span class="line">    [LXHttpTool post:strUrl params:params success:^(<span class="keyword">id</span> json) &#123;</span><br><span class="line">        LXLog(<span class="string">@"%@"</span>, json);</span><br><span class="line">        <span class="built_in">NSString</span> *tnStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, json[<span class="string">@"tn"</span>]];</span><br><span class="line">        <span class="keyword">if</span> (tnStr) &#123;</span><br><span class="line">            [UPPayPlugin startPay:tnStr mode:<span class="string">@"00"</span> viewController:<span class="keyword">self</span> delegate:<span class="keyword">self</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            [MBProgressHUD showError:json[<span class="string">@"error"</span>]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        LXLog(<span class="string">@"请求失败-%@"</span>, error);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<code>mode:@&quot;00&quot;</code>为正式版本支付模式， <code>mode:@&quot;01&quot;</code>为测试版本支付模式，官方给的有测试账号，如下图：</p>
+</blockquote>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-0002.png" alt="截图来自银联iOS开发指南"></p>
+<ul>
+<li>设置回调方法，对支付结果进行相应操作，后台数据相应的加减</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - UPPayPluginDelegate</span></span><br><span class="line">-(<span class="keyword">void</span>)UPPayPluginResult:(<span class="built_in">NSString</span>*)result &#123;</span><br><span class="line">    LXLog(<span class="string">@"%@"</span>, result);</span><br><span class="line">    <span class="keyword">if</span> ([result isEqual:<span class="string">@"success"</span>]) &#123;</span><br><span class="line">        [<span class="keyword">self</span> pay_success]; <span class="comment">// 银联支付成功之后，往后台发送相应订单数据的方法。</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([result isEqual:<span class="string">@"fail"</span>]) &#123;</span><br><span class="line">        [MBProgressHUD showError:<span class="string">@"支付失败"</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        [MBProgressHUD showError:<span class="string">@"您已取消支付"</span>];</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：支付成功后，往后台发送数据是<strong>必需的</strong>，对后台数据进行<strong>相应的更新</strong>。</p>
+</blockquote>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><blockquote>
+<ul>
+<li>对于以上分享的支付方法，仔细琢磨一下，发现有漏洞。通过第三方支付，如果支付成功返回App之后，此时网络突然出现问题，不能往后台正常发送相应数据，导致后台数据更新不了，可是银子已经扣过，这不是要挂的节奏么（求高人指点，如何避免此种BUG）。</li>
+<li>鉴于上个项目中各种单个支付方法，太过累赘，对于目前开发的项目启用<a href="https://www.pingxx.com" target="_blank" rel="external">Ping++</a>支付方法，度娘解释：<strong>Ping++ 是上海简米网络科技有限公司旗下的移动支付 SDK 产品，</strong>整合了目前市面上各种支付渠道。</li>
+<li>Ping++支付分享，待续…</li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/25/iOS应用之微信支付集成/" itemprop="url">
+                  iOS应用之微信支付集成
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T11:47:45+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/25/iOS应用之微信支付集成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/25/iOS应用之微信支付集成/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>微信支付功能的简单集成，提倡使用Ping++，简单，粗暴。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/25/iOS应用之微信支付集成/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/23/iOS应用之极光推送开发证书和生产证书的生成/" itemprop="url">
                   iOS应用之极光推送开发证书和生产证书的生成
                 </a>
@@ -933,7 +1211,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

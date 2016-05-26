@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="励志," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -84,16 +84,43 @@
 
 
 
-<meta name="description" content="都是一些不错的励志鸡汤软文。">
+<meta name="description" content="借助于前几天项目刚刚上线，也在此继续分享下银联支付的相关方法和总结。本次分享的为支持纯无卡交易。
+鉴于上两次的支付分享，本次所做的内容比较简单，签名工作移到了后台进行，前端所做的工作非常少，只需要往后台POST过去商品价格，后台对订单进行相应的签名，返回签名后的tn字符串即可。
+
+
+1.事前准备工作
+添加工程所需的银联支付(iOS)SDK,如下图：
+
+2. 开发流程
+导入头文件 #impor">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不错的文字">
-<meta property="og:url" content="http://yoursite.com/2016/05/11/不错的文字/index.html">
+<meta property="og:title" content="iOS应用之银联支付集成">
+<meta property="og:url" content="http://yoursite.com/2016/05/25/iOS应用之银联支付集成/index.html">
 <meta property="og:site_name" content="Huazhixi's blog">
-<meta property="og:description" content="都是一些不错的励志鸡汤软文。">
-<meta property="og:updated_time" content="2016-05-11T09:14:29.000Z">
+<meta property="og:description" content="借助于前几天项目刚刚上线，也在此继续分享下银联支付的相关方法和总结。本次分享的为支持纯无卡交易。
+鉴于上两次的支付分享，本次所做的内容比较简单，签名工作移到了后台进行，前端所做的工作非常少，只需要往后台POST过去商品价格，后台对订单进行相应的签名，返回签名后的tn字符串即可。
+
+
+1.事前准备工作
+添加工程所需的银联支付(iOS)SDK,如下图：
+
+2. 开发流程
+导入头文件 #impor">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-0002.png">
+<meta property="og:updated_time" content="2016-05-25T04:33:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不错的文字">
-<meta name="twitter:description" content="都是一些不错的励志鸡汤软文。">
+<meta name="twitter:title" content="iOS应用之银联支付集成">
+<meta name="twitter:description" content="借助于前几天项目刚刚上线，也在此继续分享下银联支付的相关方法和总结。本次分享的为支持纯无卡交易。
+鉴于上两次的支付分享，本次所做的内容比较简单，签名工作移到了后台进行，前端所做的工作非常少，只需要往后台POST过去商品价格，后台对订单进行相应的签名，返回签名后的tn字符串即可。
+
+
+1.事前准备工作
+添加工程所需的银联支付(iOS)SDK,如下图：
+
+2. 开发流程
+导入头文件 #impor">
+<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png">
 
 
 
@@ -111,7 +138,7 @@
   };
 </script>
 
-  <title> 不错的文字 | Huazhixi's blog </title>
+  <title> iOS应用之银联支付集成 | Huazhixi's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +318,7 @@
             
             
               
-                不错的文字
+                iOS应用之银联支付集成
               
             
           </h1>
@@ -303,8 +330,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-11T00:00:00+08:00" content="2016-05-11">
-              2016-05-11
+            <time itemprop="dateCreated" datetime="2016-05-25T12:11:26+08:00" content="2016-05-25">
+              2016-05-25
             </time>
           </span>
 
@@ -317,8 +344,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/美言/" itemprop="url" rel="index">
-                    <span itemprop="name">美言</span>
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
                   </a>
                 </span>
 
@@ -333,8 +360,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/11/不错的文字/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/11/不错的文字/" itemprop="commentsCount"></span>
+                <a href="/2016/05/25/iOS应用之银联支付集成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/25/iOS应用之银联支付集成/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -359,16 +386,38 @@
       
 
       
-        <p>都是一些不错的励志鸡汤软文。<br><a id="more"></a></p>
+        <a id="more"></a>
 <blockquote>
-<p>1﻿.身边有很多牛人，不要嫉妒，不要难受，因为这是好事儿，人最怕的就是圈子太low，大家都不成长却还乐在其中。﻿</p>
-<p>2﻿.虽说人生充满了各种偶然性，但我们还是要学会以终为始，想想自己到底要达到怎样的目标，然后倒推回来，分析自己到底要干些什么，再去采取行动。而不是走一步算一步，东一脚西一脚。﻿</p>
-<p>3﻿.在陌生人之间，金钱是最能体现诚意的东西，别跟人吹什么情怀，谈什么理想，要用实实在在的利益来建立稳固的关系。﻿</p>
-<p>4﻿.趋势是一种力量，大风一来，很多东西都能飞，因此，我们要学会抓住趋势，而不是因循守旧，用固有思维去处理问题，而要把握趋势，则要多跟北上广深这些一线城市的人保持连接。﻿</p>
-<p>5﻿.纯靠写作吃饭是一种奢侈的理想，但是写作能够带来其他东西，比如个人品牌，比如你的表达能力，我们要在写作之外提供价值，才能活得更好，比如提供咨询，提供培训，提供产品。﻿</p>
-<p>6﻿.并不是每一个人都适合做自由职业者，羡慕归羡慕，现实归现实。不过，我们可以利用业余时间打造第二职业，成为斜杠青年是一个不错的选择。﻿</p>
-<p>7﻿.怎样感恩啊？除了发红包，你还可以试试在别人帮助你以后，给对方写一两百字的感谢信，告诉他你的收获，你的感悟，这样，别人肯定能感受到你的真诚和用心。﻿</p>
-<p>8﻿.口才真的太重要了，面对面交谈时，没有太多时间让你去反应，让对方去等待。因此，在重要的谈话开始之前，你最好是有所准备，对于没有把握的内容，别乱说，这时候，你可以多听别人讲，然后根据别人所讲的内容作出回应。还有，眼神别躲来躲去，这样会让人觉得你这人不对劲儿。</p>
+<ul>
+<li>借助于前几天项目刚刚上线，也在此继续分享下银联支付的相关方法和总结。本次分享的为<strong>支持纯无卡交易</strong>。</li>
+<li>鉴于上两次的支付分享，本次所做的内容比较简单，签名工作移到了后台进行，前端所做的工作非常少，只需要往后台POST过去商品价格，后台对订单进行相应的签名，返回签名后的<strong>tn字符串</strong>即可。</li>
+</ul>
+</blockquote>
+<h3 id="1-事前准备工作"><a href="#1-事前准备工作" class="headerlink" title="1.事前准备工作"></a>1.事前准备工作</h3><ul>
+<li>添加工程所需的<a href="http://yun.baidu.com/s/1eRrppEa" target="_blank" rel="external">银联支付(iOS)SDK</a>,如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png" alt="导入工程中的SDK"></li>
+</ul>
+<h3 id="2-开发流程"><a href="#2-开发流程" class="headerlink" title="2. 开发流程"></a>2. 开发流程</h3><ul>
+<li>导入头文件 <code>#import &quot;UPPayPlugin.h&quot;</code> 以及设置代理 <code>&lt;UPPayPluginDelegate&gt;</code> </li>
+<li>触发唤起银联支付的方法（本次对订单的签名处理都在后台进行，在此附上后台<a href="http://yun.baidu.com/share/link?shareid=1963902588&amp;uk=1965504264" target="_blank" rel="external">银联支付SDK</a>）。</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 银联支付相关方法</span></span><br><span class="line">- (<span class="keyword">IBAction</span>)yinlianPayAct &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *strUrl = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/App/Index/index/"</span>,SERVERURL]; <span class="comment">//从后台获取tn字符串的API地址</span></span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *params = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    params[<span class="string">@"money"</span>] = payCount; <span class="comment">// 支付金额</span></span><br><span class="line">    [LXHttpTool post:strUrl params:params success:^(<span class="keyword">id</span> json) &#123;</span><br><span class="line">        LXLog(<span class="string">@"%@"</span>, json);</span><br><span class="line">        <span class="built_in">NSString</span> *tnStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, json[<span class="string">@"tn"</span>]];</span><br><span class="line">        <span class="keyword">if</span> (tnStr) &#123;</span><br><span class="line">            [UPPayPlugin startPay:tnStr mode:<span class="string">@"00"</span> viewController:<span class="keyword">self</span> delegate:<span class="keyword">self</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            [MBProgressHUD showError:json[<span class="string">@"error"</span>]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        LXLog(<span class="string">@"请求失败-%@"</span>, error);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<code>mode:@&quot;00&quot;</code>为正式版本支付模式， <code>mode:@&quot;01&quot;</code>为测试版本支付模式，官方给的有测试账号，如下图：</p>
+</blockquote>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-0002.png" alt="截图来自银联iOS开发指南"></p>
+<ul>
+<li>设置回调方法，对支付结果进行相应操作，后台数据相应的加减</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - UPPayPluginDelegate</span></span><br><span class="line">-(<span class="keyword">void</span>)UPPayPluginResult:(<span class="built_in">NSString</span>*)result &#123;</span><br><span class="line">    LXLog(<span class="string">@"%@"</span>, result);</span><br><span class="line">    <span class="keyword">if</span> ([result isEqual:<span class="string">@"success"</span>]) &#123;</span><br><span class="line">        [<span class="keyword">self</span> pay_success]; <span class="comment">// 银联支付成功之后，往后台发送相应订单数据的方法。</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([result isEqual:<span class="string">@"fail"</span>]) &#123;</span><br><span class="line">        [MBProgressHUD showError:<span class="string">@"支付失败"</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        [MBProgressHUD showError:<span class="string">@"您已取消支付"</span>];</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：支付成功后，往后台发送数据是<strong>必需的</strong>，对后台数据进行<strong>相应的更新</strong>。</p>
+</blockquote>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><blockquote>
+<ul>
+<li>对于以上分享的支付方法，仔细琢磨一下，发现有漏洞。通过第三方支付，如果支付成功返回App之后，此时网络突然出现问题，不能往后台正常发送相应数据，导致后台数据更新不了，可是银子已经扣过，这不是要挂的节奏么（求高人指点，如何避免此种BUG）。</li>
+<li>鉴于上个项目中各种单个支付方法，太过累赘，对于目前开发的项目启用<a href="https://www.pingxx.com" target="_blank" rel="external">Ping++</a>支付方法，度娘解释：<strong>Ping++ 是上海简米网络科技有限公司旗下的移动支付 SDK 产品，</strong>整合了目前市面上各种支付渠道。</li>
+<li>Ping++支付分享，待续…</li>
+</ul>
 </blockquote>
 
       
@@ -391,7 +440,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/励志/" rel="tag">#励志</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -400,13 +449,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/05/25/iOS应用之微信支付集成/" rel="next" title="iOS应用之微信支付集成">
+                <i class="fa fa-chevron-left"></i> iOS应用之微信支付集成
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/11/iOS应用之-Ping-支付集成/" rel="prev" title="iOS应用之 Ping++ 支付集成">
-                iOS应用之 Ping++ 支付集成 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -565,7 +614,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-事前准备工作"><span class="nav-text">1.事前准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-开发流程"><span class="nav-text">2. 开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-总结"><span class="nav-text">3. 总结</span></a></li></ol></div>
             
           </div>
         </section>
@@ -691,9 +740,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'huazhixi';
-      var disqus_identifier = '2016/05/11/不错的文字/';
-      var disqus_title = '不错的文字';
-      var disqus_url = 'http://yoursite.com/2016/05/11/不错的文字/';
+      var disqus_identifier = '2016/05/25/iOS应用之银联支付集成/';
+      var disqus_title = 'iOS应用之银联支付集成';
+      var disqus_url = 'http://yoursite.com/2016/05/25/iOS应用之银联支付集成/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

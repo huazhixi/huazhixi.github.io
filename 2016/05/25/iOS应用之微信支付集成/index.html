@@ -1,0 +1,770 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="微信支付功能的简单集成，提倡使用Ping++，简单，粗暴。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS应用之微信支付集成">
+<meta property="og:url" content="http://yoursite.com/2016/05/25/iOS应用之微信支付集成/index.html">
+<meta property="og:site_name" content="Huazhixi's blog">
+<meta property="og:description" content="微信支付功能的简单集成，提倡使用Ping++，简单，粗暴。">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-001.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-002.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-003.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-004.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-005.png">
+<meta property="og:updated_time" content="2016-05-25T04:06:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS应用之微信支付集成">
+<meta name="twitter:description" content="微信支付功能的简单集成，提倡使用Ping++，简单，粗暴。">
+<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-001.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iOS应用之微信支付集成 | Huazhixi's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11b9adbb16ced092a05265acd57";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huazhixi's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">keep going, keep fighting</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '83pfz2FMRhuyzfCskMCw','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS应用之微信支付集成
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T11:47:45+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/25/iOS应用之微信支付集成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/25/iOS应用之微信支付集成/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>微信支付功能的简单集成，提倡使用Ping++，简单，粗暴。<br><a id="more"></a></p>
+<blockquote>
+<p>所有信息的生成都在前端完成，包括对订单进行sign签名以及MD5签名加密（此方法相对来说有些复杂，没有官方给的方法简单）。<br><strong>注：官方给的是v3&amp;v4支付流程，签名和加密都是在<a href="https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_1" target="_blank" rel="external">服务器端</a>进行，由于没有对接过，所以就暂时没有办法分享。</strong></p>
+</blockquote>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
+<li>工程所需的<a href="http://yun.baidu.com/share/link?shareid=2558888363&amp;uk=1965504264" target="_blank" rel="external">微信支付SDK</a>,如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-001.png" alt="导入工程的SDK文件"></li>
+<li>微信支付所需的相关用户信息（由用户申请）</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">//微信支付商户号</span></span><br><span class="line"> <span class="meta">#define MCH_ID  @<span class="meta-string">"YOUR_MCH_ID"</span></span></span><br><span class="line"><span class="comment">//开户邮件中的（公众账号APPID或者应用APPID）</span></span><br><span class="line"><span class="meta">#define WX_AppID @<span class="meta-string">"YOUR_WX_AppID"</span></span></span><br><span class="line"><span class="comment">//安全校验码（MD5）密钥，商户平台登录账户和密码登录http://pay.weixin.qq.com 平台设置的“API密钥”，为了安全，请设置为以数字和字母组成的32字符串。</span></span><br><span class="line"><span class="meta">#define WX_PartnerKey @<span class="meta-string">"YOUR_WX_PartnerKey"</span></span></span><br><span class="line"><span class="comment">//获取用户openid，可使用APPID对应的公众平台登录http://mp.weixin.qq.com 的开发者中心获取AppSecret。</span></span><br><span class="line"><span class="meta">#define WX_AppSecret @<span class="meta-string">"YOUR_WX_AppSecret"</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="2-集成开发流程"><a href="#2-集成开发流程" class="headerlink" title="2. 集成开发流程"></a>2. 集成开发流程</h2><blockquote>
+<p>1 . iOS 9系统策略更新，限制了http协议的访问，此外应用需要在“Info.plist”中将要使用的URL Schemes（跳转程序）列为白名单，才可正常检查其他应用是否安装(引自<a href="https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_1" target="_blank" rel="external">微信支付SDK1.6.2</a>，<em>Readme.text</em>)。如下图：</p>
+</blockquote>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-002.png" alt="info里面配置添加白名单"><br><code>注：LSApplicationQueriesSchemes 下面其他的为友盟分享要添加的白名单，当然也包含微信。</code></p>
+<blockquote>
+<p>2 . 在项目属性中的URL Types中添加<strong>URL Schemes</strong>，如图中标红位置所示。</p>
+</blockquote>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-003.png" alt="配置URL Schemes，用来进行程序之间的跳转"></p>
+<blockquote>
+<p>3 . 在项目工程Appdelegate.m文件里面添加注册微信支付信息，<strong>注：如果项目中第三方分享用的是友盟，在注册的时候要把友盟注册放在微信注册的前面执行</strong>。如下：</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 设置第三方 注册信息</span></span><br><span class="line">- (<span class="keyword">void</span>)registerMethods &#123;</span><br><span class="line"><span class="comment">/****************       友盟分享注册信息     *****************/</span></span><br><span class="line">  [UMSocialData setAppKey:UMSocial_AppKey];</span><br><span class="line"></span><br><span class="line">  <span class="comment">//设置微信AppId、appSecret，分享url</span></span><br><span class="line">  [UMSocialWechatHandler setWXAppId:WX_appID appSecret:WX_AppSecret url:<span class="string">@"http://www.umeng.com/social"</span>];</span><br><span class="line"></span><br><span class="line">  <span class="comment">//设置手机QQ 的AppId，Appkey，和分享URL</span></span><br><span class="line">  [UMSocialQQHandler setQQWithAppId:QQ_AppID appKey:QQ_AppKey url:<span class="string">@"http://www.umeng.com/social"</span>];</span><br><span class="line">  [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatTimeline, UMShareToWechatTimeline]];</span><br><span class="line"></span><br><span class="line">  <span class="comment">//打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。</span></span><br><span class="line">  <span class="comment">// 添加SSO授权开关（使用微博原生SDK）</span></span><br><span class="line">  [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:Sina_AppKey RedirectURL:<span class="string">@"http://sns.whalecloud.com/sina2/callback"</span>];</span><br><span class="line">  <span class="comment">// 添加SSO授权开关(非微博原生SDK)</span></span><br><span class="line">  [UMSocialSinaHandler openSSOWithRedirectURL:<span class="string">@"http://sns.whalecloud.com/sina2/callback"</span>];</span><br><span class="line"><span class="comment">/****************       友盟分享注册信息     *****************/</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//　先调用友盟，然后调用微信清册信息</span></span><br><span class="line"><span class="comment">/****************       注册微信支付信息    *****************/</span></span><br><span class="line">  [WXApi registerApp:WX_appID];</span><br><span class="line">  <span class="comment">// [WXApi registerApp:WX_appID withDescription:@"demo 2.0"];</span></span><br><span class="line">  两个任选一行，还不清楚这个appdesc有何作用</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4.配置DataMD5.m文件，本地对签名进行二次加密，如果忽略这个步骤，就会造成调起微信支付，只出现一个确定按钮。<code>注：之前出现这个问题，被卡壳了两天才发现，FK。</code></p>
+</blockquote>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-004.png" alt="配置MD5加密文件，添加商户密钥"></p>
+<blockquote>
+<p>5 . 在要唤起微信支付的.m文件中，直接上代码方便ctrl+c, ctrl+v</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 微信支付相关方法</span></span><br><span class="line">- (<span class="keyword">void</span>)weixinChooseAct &#123;</span><br><span class="line">  <span class="built_in">NSString</span> *appid,*mch_id,*nonce_str,*sign,*body,*out_trade_no,*total_fee,*spbill_create_ip,*notify_url,*trade_type,*partner;</span><br><span class="line">  <span class="comment">//应用APPID</span></span><br><span class="line">  appid = WX_appID;</span><br><span class="line">  <span class="comment">//微信支付商户号</span></span><br><span class="line">  mch_id = MCH_ID;</span><br><span class="line">  <span class="comment">//产生随机字符串，这里最好使用和安卓端一致的生成逻辑</span></span><br><span class="line">  nonce_str =[<span class="keyword">self</span> generateTradeNO];</span><br><span class="line">  body =<span class="string">@"微信支付时候看到的支付信息"</span>;</span><br><span class="line">  <span class="comment">//随机产生订单号用于测试，正式使用请换成你从自己服务器获取的订单号</span></span><br><span class="line">  out_trade_no = <span class="keyword">self</span>.gold_sn;</span><br><span class="line">  <span class="comment">//交易价格1表示0.01元，10表示0.1元</span></span><br><span class="line">  total_fee = <span class="keyword">self</span>.payCount;</span><br><span class="line">  <span class="comment">//获取本机IP地址，请再wifi环境下测试，否则获取的ip地址为error，正确格式应该是8.8.8.8</span></span><br><span class="line">  spbill_create_ip =[getIPhoneIP getIPAddress];</span><br><span class="line">  <span class="comment">//交易结果通知网站此处用于测试，随意填写，正式使用时填写正确网站</span></span><br><span class="line">  notify_url =<span class="string">@"www.cccuu.com"</span>;</span><br><span class="line">  trade_type =<span class="string">@"APP"</span>;</span><br><span class="line">  <span class="comment">//商户密钥</span></span><br><span class="line">  partner = WX_partnerKey;</span><br><span class="line">  <span class="comment">//获取sign签名</span></span><br><span class="line">  DataMD5 *data = [[DataMD5 alloc] initWithAppid:appid mch_id:mch_id nonce_str:nonce_str partner_id:partner body:body out_trade_no:out_trade_no total_fee:total_fee spbill_create_ip:spbill_create_ip notify_url:notify_url trade_type:trade_type];</span><br><span class="line">  sign = [data getSignForMD5];</span><br><span class="line">  <span class="comment">//设置参数并转化成xml格式</span></span><br><span class="line">  <span class="built_in">NSMutableDictionary</span> *dic = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">  [dic setValue:appid forKey:<span class="string">@"appid"</span>];<span class="comment">//公众账号ID</span></span><br><span class="line">  [dic setValue:mch_id forKey:<span class="string">@"mch_id"</span>];<span class="comment">//商户号</span></span><br><span class="line">  [dic setValue:nonce_str forKey:<span class="string">@"nonce_str"</span>];<span class="comment">//随机字符串</span></span><br><span class="line">  [dic setValue:sign forKey:<span class="string">@"sign"</span>];<span class="comment">//签名</span></span><br><span class="line">  [dic setValue:body forKey:<span class="string">@"body"</span>];<span class="comment">//商品描述</span></span><br><span class="line">  [dic setValue:out_trade_no forKey:<span class="string">@"out_trade_no"</span>];<span class="comment">//订单号</span></span><br><span class="line">  [dic setValue:total_fee forKey:<span class="string">@"total_fee"</span>];<span class="comment">//金额</span></span><br><span class="line">  [dic setValue:spbill_create_ip forKey:<span class="string">@"spbill_create_ip"</span>];<span class="comment">//终端IP</span></span><br><span class="line">  [dic setValue:notify_url forKey:<span class="string">@"notify_url"</span>];<span class="comment">//通知地址</span></span><br><span class="line">  [dic setValue:trade_type forKey:<span class="string">@"trade_type"</span>];<span class="comment">//交易类型</span></span><br><span class="line">  <span class="comment">// 转换成xml字符串</span></span><br><span class="line">  <span class="built_in">NSString</span> *string = [dic XMLString];</span><br><span class="line">  [<span class="keyword">self</span> http:string];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 拿到转换好的xml发送请求</span></span><br><span class="line">- (<span class="keyword">void</span>)http:(<span class="built_in">NSString</span> *)xml &#123;</span><br><span class="line">  [MBProgressHUD showMessage:<span class="string">@"正在获取支付订单..."</span>];</span><br><span class="line">  AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];</span><br><span class="line">  <span class="comment">//这里传入的xml字符串只是形似xml，但是不是正确是xml格式，需要使用af方法进行转义</span></span><br><span class="line">  manager.responseSerializer = [[AFHTTPResponseSerializer alloc] init];</span><br><span class="line">  [manager.requestSerializer setValue:<span class="string">@"text/xml; charset=utf-8"</span> forHTTPHeaderField:<span class="string">@"Content-Type"</span>];</span><br><span class="line">  [manager.requestSerializer setValue:<span class="string">@"https://api.mch.weixin.qq.com/pay/unifiedorder"</span> forHTTPHeaderField:<span class="string">@"SOAPAction"</span>];</span><br><span class="line">  [manager.requestSerializer setQueryStringSerializationWithBlock:^<span class="built_in">NSString</span> *(<span class="built_in">NSURLRequest</span> *request, <span class="built_in">NSDictionary</span> *parameters, <span class="built_in">NSError</span> *__autoreleasing *error) &#123;</span><br><span class="line">        <span class="keyword">return</span> xml;</span><br><span class="line">  &#125;];</span><br><span class="line">  <span class="comment">//发起请求</span></span><br><span class="line">  [manager POST:<span class="string">@"https://api.mch.weixin.qq.com/pay/unifiedorder"</span> parameters:xml success:^(AFHTTPRequestOperation *operation, <span class="keyword">id</span> responseObject) &#123;</span><br><span class="line">      <span class="built_in">NSString</span> *responseString = [[<span class="built_in">NSString</span> alloc] initWithData:responseObject encoding:<span class="built_in">NSUTF8StringEncoding</span>] ;</span><br><span class="line">      <span class="comment">// LXLog(@"responseString is %@",responseString);</span></span><br><span class="line">      <span class="comment">//将微信返回的xml数据解析转义成字典</span></span><br><span class="line">      <span class="built_in">NSDictionary</span> *dic = [<span class="built_in">NSDictionary</span> dictionaryWithXMLString:responseString];</span><br><span class="line">      <span class="comment">//判断返回的许可</span></span><br><span class="line">      <span class="keyword">if</span> ([[dic objectForKey:<span class="string">@"result_code"</span>] isEqualToString:<span class="string">@"SUCCESS"</span>] &amp;&amp;[[dic objectForKey:<span class="string">@"return_code"</span>] isEqualToString:<span class="string">@"SUCCESS"</span>] ) &#123;</span><br><span class="line">          <span class="comment">//发起微信支付，设置参数</span></span><br><span class="line">          PayReq *request = [[PayReq alloc] init];</span><br><span class="line">          request.openID = [dic objectForKey:<span class="string">@"appid"</span>];</span><br><span class="line">          request.partnerId = [dic objectForKey:<span class="string">@"mch_id"</span>];</span><br><span class="line">          request.prepayId= [dic objectForKey:<span class="string">@"prepay_id"</span>];</span><br><span class="line">          request.package = <span class="string">@"Sign=WXPay"</span>;</span><br><span class="line">          request.nonceStr= [dic objectForKey:<span class="string">@"nonce_str"</span>];</span><br><span class="line">          <span class="comment">//将当前事件转化成时间戳</span></span><br><span class="line">          <span class="built_in">NSDate</span> *datenow = [<span class="built_in">NSDate</span> date];</span><br><span class="line">          <span class="built_in">NSString</span> *timeSp = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%ld"</span>, (<span class="keyword">long</span>)[datenow timeIntervalSince1970]];</span><br><span class="line">          <span class="built_in">UInt32</span> timeStamp =[timeSp intValue];</span><br><span class="line">          request.timeStamp= timeStamp;</span><br><span class="line">          <span class="comment">// 签名加密</span></span><br><span class="line">          DataMD5 *md5 = [[DataMD5 alloc] init];</span><br><span class="line">          request.sign=[md5 createMD5SingForPay:request.openID partnerid:request.partnerId prepayid:request.prepayId package:request.package noncestr:request.nonceStr timestamp:request.timeStamp];</span><br><span class="line">          <span class="comment">// 调用微信</span></span><br><span class="line">          [WXApi sendReq:request];</span><br><span class="line">          [MBProgressHUD hideHUD];</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          LXLog(<span class="string">@"参数不正确，请检查参数"</span>);</span><br><span class="line">          [MBProgressHUD hideHUD];</span><br><span class="line">          [MBProgressHUD showError:<span class="string">@"支付错误！"</span>];</span><br><span class="line">      &#125;</span><br><span class="line">  &#125; failure:^(AFHTTPRequestOperation *operation, <span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">      LXLog(<span class="string">@"error is %@"</span>,error);</span><br><span class="line">      [MBProgressHUD hideHUD];</span><br><span class="line">      [MBProgressHUD showError:<span class="string">@"未完成支付"</span>];</span><br><span class="line">  &#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 产生随机订单号</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)generateTradeNO &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">int</span> kNumber = <span class="number">15</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">NSString</span> *sourceStr = <span class="string">@"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>;</span><br><span class="line">  <span class="built_in">NSMutableString</span> *resultStr = [[<span class="built_in">NSMutableString</span> alloc] init];</span><br><span class="line">  srand(time(<span class="number">0</span>)); <span class="comment">// 此行代码有警告: </span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; kNumber; i++) &#123;</span><br><span class="line">      <span class="keyword">unsigned</span> index = rand() % [sourceStr length];</span><br><span class="line">      <span class="built_in">NSString</span> *oneStr = [sourceStr substringWithRange:<span class="built_in">NSMakeRange</span>(index, <span class="number">1</span>)];</span><br><span class="line">      [resultStr appendString:oneStr];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> resultStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：上面 <code>stand(time(0));</code>报警告，如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-005.png" alt="类型不匹配，不知道应该怎么改，有知道的下方赐教"></p>
+<blockquote>
+<p>6 . 最后在Appdelegate.m文件中添加微信支付结果 <strong>onResp</strong> 回调方法，<strong>非常重要：</strong>给后台发送数据进行后台数据的更新（<em>例如：充值浩方Vip会员，微信钱包钱已经扣了，而后台没有收到信息，钱不就白花了 - - 、</em>），如下：</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - WXApiDelegate</span></span><br><span class="line">-(<span class="keyword">void</span>)onResp:(BaseResp *)resp &#123;</span><br><span class="line">  <span class="keyword">if</span> ([resp isKindOfClass:[PayResp class]]) &#123;</span><br><span class="line">      PayResp*response=(PayResp*)resp;  <span class="comment">// 微信终端返回给第三方的关于支付结果的结构体</span></span><br><span class="line">      <span class="keyword">switch</span> (response.errCode) &#123;</span><br><span class="line">          <span class="keyword">case</span> WXSuccess:</span><br><span class="line">          &#123;<span class="comment">// 支付成功，向后台发送消息</span></span><br><span class="line">              LXLog(<span class="string">@"支付成功"</span>);</span><br><span class="line">              [[<span class="built_in">NSNotificationCenter</span> defaultCenter] postNotificationName:<span class="string">@"WX_PaySuccess"</span> object:<span class="literal">nil</span>];</span><br><span class="line">        &#125;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> WXErrCodeCommon:</span><br><span class="line">          &#123; <span class="comment">//签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等</span></span><br><span class="line">              [MBProgressHUD showError:<span class="string">@"支付失败"</span>];</span><br><span class="line">              LXLog(<span class="string">@"支付失败"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> WXErrCodeUserCancel:</span><br><span class="line">          &#123; <span class="comment">//用户点击取消并返回</span></span><br><span class="line">              LXLog(<span class="string">@"取消支付"</span>);</span><br><span class="line">              [MBProgressHUD showError:<span class="string">@"取消支付"</span>];</span><br><span class="line">          &#125;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> WXErrCodeSentFail:</span><br><span class="line">          &#123; <span class="comment">//发送失败</span></span><br><span class="line">              LXLog(<span class="string">@"发送失败"</span>);</span><br><span class="line">              [MBProgressHUD showError:<span class="string">@"发送失败"</span>];</span><br><span class="line">          &#125;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> WXErrCodeUnsupport:</span><br><span class="line">          &#123; <span class="comment">//微信不支持</span></span><br><span class="line">              LXLog(<span class="string">@"微信不支持"</span>);</span><br><span class="line">              [MBProgressHUD showError:<span class="string">@"微信不支持"</span>];</span><br><span class="line">          &#125;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">case</span> WXErrCodeAuthDeny:</span><br><span class="line">          &#123; <span class="comment">//授权失败</span></span><br><span class="line">              LXLog(<span class="string">@"授权失败"</span>);</span><br><span class="line">              [MBProgressHUD showError:<span class="string">@"授权失败"</span>];</span><br><span class="line">          &#125;</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>到此结束，忘能正常唤起微信支付。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><blockquote>
+<ol>
+<li><p>按照官方Demo来看，加密证书之类的操作也是在<a href="https://pay.weixin.qq.com/wiki/doc/api/app.php?chapter=11_1" target="_blank" rel="external">服务器端</a>完成，这样商户的信息就不会暴露在前端，才能达到 “TA好，我也好”。<em> ps:此方法本人没有做过，以和后台司马同学商量过，后期整理出来 </em>。</p>
+</li>
+<li><p>第一次用MarkDown记录，感觉自己用着好笨，对于代码部分的应用非常不得手，多多练习。</p>
+</li>
+<li><p>银联支付集成，待续。</p>
+</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/23/iOS应用之极光推送开发证书和生产证书的生成/" rel="next" title="iOS应用之极光推送开发证书和生产证书的生成">
+                <i class="fa fa-chevron-left"></i> iOS应用之极光推送开发证书和生产证书的生成
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/25/iOS应用之银联支付集成/" rel="prev" title="iOS应用之银联支付集成">
+                iOS应用之银联支付集成 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="huazhixi" />
+          <p class="site-author-name" itemprop="name">huazhixi</p>
+          <p class="site-description motion-element" itemprop="description">keep going, keep fighting</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huazhixi" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/02b73e8b1f8d/latest_articles" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/huazhixi" title="GitHub" target="_blank">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/02b73e8b1f8d/latest_articles" title="Jianshu" target="_blank">Jianshu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-准备工作"><span class="nav-text">1. 准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-集成开发流程"><span class="nav-text">2. 集成开发流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-总结"><span class="nav-text">3. 总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huazhixi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'huazhixi';
+      var disqus_identifier = '2016/05/25/iOS应用之微信支付集成/';
+      var disqus_title = 'iOS应用之微信支付集成';
+      var disqus_url = 'http://yoursite.com/2016/05/25/iOS应用之微信支付集成/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+  
+</body>
+</html>
