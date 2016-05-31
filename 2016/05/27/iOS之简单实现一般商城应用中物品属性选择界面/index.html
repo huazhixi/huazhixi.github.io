@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="小开源," />
 
 
 
@@ -86,16 +86,17 @@
 
 <meta name="description" content="本实例直接从当前项目中拉出来，实现的功能简单，但是在自己实现的时候用的代码老多多，而且当前只接收两组属性，不过属性实现了自动向下布局，超出屏幕可以上下滑动，但封装性不强，希望得到牛人指点。下面简单介绍实现方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS之简单实现一般商城应用中物品属性选择界面">
+<meta property="og:title" content="iOS之一般商城应用中物品属性选择界面+购物车功能">
 <meta property="og:url" content="http://yoursite.com/2016/05/27/iOS之简单实现一般商城应用中物品属性选择界面/index.html">
 <meta property="og:site_name" content="Huazhixi's blog">
 <meta property="og:description" content="本实例直接从当前项目中拉出来，实现的功能简单，但是在自己实现的时候用的代码老多多，而且当前只接收两组属性，不过属性实现了自动向下布局，超出屏幕可以上下滑动，但封装性不强，希望得到牛人指点。下面简单介绍实现方法。">
-<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/527-05.gif">
-<meta property="og:updated_time" content="2016-05-27T01:28:10.000Z">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9.gif">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%8A%9F%E8%83%BD%E9%A1%B5%E9%9D%A2.gif">
+<meta property="og:updated_time" content="2016-05-31T07:18:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS之简单实现一般商城应用中物品属性选择界面">
+<meta name="twitter:title" content="iOS之一般商城应用中物品属性选择界面+购物车功能">
 <meta name="twitter:description" content="本实例直接从当前项目中拉出来，实现的功能简单，但是在自己实现的时候用的代码老多多，而且当前只接收两组属性，不过属性实现了自动向下布局，超出屏幕可以上下滑动，但封装性不强，希望得到牛人指点。下面简单介绍实现方法。">
-<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/527-05.gif">
+<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9.gif">
 
 
 
@@ -113,7 +114,7 @@
   };
 </script>
 
-  <title> iOS之简单实现一般商城应用中物品属性选择界面 | Huazhixi's blog </title>
+  <title> iOS之一般商城应用中物品属性选择界面+购物车功能 | Huazhixi's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -282,7 +283,7 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
 
     
       <header class="post-header">
@@ -293,7 +294,7 @@
             
             
               
-                iOS之简单实现一般商城应用中物品属性选择界面
+                iOS之一般商城应用中物品属性选择界面+购物车功能
               
             
           </h1>
@@ -365,23 +366,13 @@
 <p>本实例直接从当前项目中拉出来，实现的功能简单，但是在自己实现的时候用的代码老多多，而且当前只接收两组属性，不过属性实现了自动向下布局，超出屏幕可以上下滑动，但封装性不强，希望得到牛人指点。<br>下面简单介绍实现方法。<br><a id="more"></a></p>
 </blockquote>
 <hr>
-<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/527-05.gif" alt="购物属性选择.gif"></p>
+<h4 id="1-购物车属性选择功能"><a href="#1-购物车属性选择功能" class="headerlink" title="1.购物车属性选择功能"></a>1.购物车属性选择功能</h4><p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9.gif" alt="购物属性选择.gif"></p>
+<h5 id="1-获取物品属性信息，并将数据直接转换为模型数据。"><a href="#1-获取物品属性信息，并将数据直接转换为模型数据。" class="headerlink" title="1. 获取物品属性信息，并将数据直接转换为模型数据。"></a>1. 获取物品属性信息，并将数据直接转换为模型数据。</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> *  获取 商品属性 数据</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)getGoodAttrData &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *URL = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/App/Sylm/yclist"</span>,SERVERURL];</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *paramas = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    paramas[<span class="string">@"method"</span>] = <span class="string">@"goods_attr"</span>;</span><br><span class="line">    paramas[<span class="string">@"goods_id"</span>] = <span class="string">@"11"</span>;</span><br><span class="line">    [LXHttpTool post:URL params:paramas success:^(<span class="keyword">id</span> json) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, json);</span><br><span class="line">        <span class="built_in">NSInteger</span> status = [json[<span class="string">@"status"</span>] integerValue];</span><br><span class="line">        <span class="keyword">if</span> (status == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="built_in">NSArray</span> *goodAttrsArr = [GoodAttrModel mj_objectArrayWithKeyValuesArray:json[<span class="string">@"data"</span>]];</span><br><span class="line">            <span class="keyword">self</span>.goodAttrsArr = goodAttrsArr;      </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            [SVProgressHUD showErrorWithStatus:<span class="string">@"暂无商品属性"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        [SVProgressHUD showErrorWithStatus:<span class="string">@"请重新加载"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, error);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下："><a href="#2-传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下：" class="headerlink" title="2.传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下："></a>2.传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下：</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *attrValueArr0 = ((GoodAttrModel *)goodAttrsArr[<span class="number">0</span>]).attr_value;</span><br><span class="line"><span class="built_in">CGFloat</span> one_btnsX = kBigMargin;</span><br><span class="line"><span class="built_in">CGFloat</span> one_btnY = <span class="built_in">CGRectGetMaxY</span>(_firstAttributeLbl.frame) + kSmallMargin;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; attrValueArr0.count ; i++) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *btnTittle = ((GoodAttrValueModel *)attrValueArr0[i]).attr_value;</span><br><span class="line">    <span class="built_in">CGSize</span> size = [btnTittle sizeWithAttributes:[<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:kButtonTextFont, <span class="built_in">NSFontAttributeName</span>, <span class="literal">nil</span>]];</span><br><span class="line">    <span class="built_in">UIButton</span> *btn = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</span><br><span class="line">    [btn setTitle:btnTittle forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    btn.titleLabel.font=[<span class="built_in">UIFont</span> boldSystemFontOfSize:<span class="number">13</span>];</span><br><span class="line">    btn.tag = i;</span><br><span class="line">    [btn addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(attrs1BtnClick:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</span><br><span class="line">    btn.frame = <span class="built_in">CGRectMake</span>(one_btnsX, one_btnY, size.width + <span class="number">30</span>, <span class="number">35</span>);</span><br><span class="line">    one_btnsX += kBigMargin + size.width + kBigMargin;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (one_btnsX  &gt; kScreenW) &#123;</span><br><span class="line">        one_btnsX = kBigMargin;</span><br><span class="line">        one_btnY += <span class="number">45</span>;</span><br><span class="line">        <span class="keyword">if</span> ((one_btnsX + size.width + <span class="number">30</span>) &gt; kScreenW) &#123;</span><br><span class="line">            one_btnsX = kBigMargin;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        btn.frame = <span class="built_in">CGRectMake</span>(one_btnsX, one_btnY, size.width + <span class="number">30</span>, <span class="number">35</span>);</span><br><span class="line">        one_btnsX += <span class="number">15</span> + size.width + kBigMargin;</span><br><span class="line">    &#125;</span><br><span class="line">    [btn defaultStyleWithNormalTitleColor:HX_RGB(<span class="number">136</span>, <span class="number">137</span>, <span class="number">138</span>) andHighTitleColor:kWhiteColor andBorderColor:LXBorderColor andBackgroundColor:kWhiteColor andHighBgColor:kMAINCOLOR andSelectedBgColor:kMAINCOLOR withcornerRadius:<span class="number">2</span>];</span><br><span class="line">    [<span class="keyword">self</span>.scrollView addSubview:btn];</span><br><span class="line">    [<span class="keyword">self</span>.firstBtnsArr addObject:btn];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-通过Block来传递选中的属性，如下："><a href="#3-通过Block来传递选中的属性，如下：" class="headerlink" title="3.通过Block来传递选中的属性，如下："></a>3.通过Block来传递选中的属性，如下：</h5><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="keyword">void</span> (^sureBtnsClick)(<span class="built_in">NSString</span> *num, <span class="built_in">NSString</span> *attr_id, <span class="built_in">NSString</span> *goods_attr_value_1, <span class="built_in">NSString</span> *goods_attr_value_2);</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 按钮点击事件</span></span><br><span class="line">- (<span class="keyword">void</span>)sureBtnClick &#123;</span><br><span class="line">    <span class="comment">// 购买数量</span></span><br><span class="line">    <span class="built_in">NSString</span> *num = <span class="keyword">self</span>.buyNumsLbl.text;</span><br><span class="line">    <span class="comment">// 属性ID str</span></span><br><span class="line">    <span class="built_in">NSString</span> *attr_id1 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@-%@"</span>, _goods_attr_1, _goods_attr_value_1];</span><br><span class="line">    <span class="built_in">NSString</span> *attr_id2 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@-%@"</span>, _goods_attr_2, _goods_attr_value_2];</span><br><span class="line">    <span class="built_in">NSString</span> *attr_id = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@|%@"</span>, attr_id1, attr_id2];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.sureBtnsClick) &#123;</span><br><span class="line">        <span class="keyword">self</span>.sureBtnsClick(num, attr_id, <span class="keyword">self</span>.goods_attr_value_1, <span class="keyword">self</span>.goods_attr_value_2);</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="keyword">self</span> removeView];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="购物车功能"><a href="#购物车功能" class="headerlink" title="购物车功能"></a>购物车功能</h4><h5 id="1-选择，删除（-滑动删除）和收藏功能"><a href="#1-选择，删除（-滑动删除）和收藏功能" class="headerlink" title="1.选择，删除（+滑动删除）和收藏功能"></a>1.选择，删除（+滑动删除）和收藏功能</h5><p>其中大部分通过block来实现，涉及的逻辑有些绕，好乱，不过功能还是实现了。效果如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/%E8%B4%AD%E7%89%A9%E8%BD%A6%E5%8A%9F%E8%83%BD%E9%A1%B5%E9%9D%A2.gif" alt="购物车功能演示"></p>
 <blockquote>
-<ol>
-<li>获取物品属性信息，并将数据直接转换为模型数据。</li>
-</ol>
-</blockquote>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> *  获取 商品属性 数据</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)getGoodAttrData &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *URL = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/App/Sylm/yclist"</span>,SERVERURL];</span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *paramas = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    paramas[<span class="string">@"method"</span>] = <span class="string">@"goods_attr"</span>;</span><br><span class="line">    paramas[<span class="string">@"goods_id"</span>] = <span class="string">@"11"</span>;</span><br><span class="line">    [LXHttpTool post:URL params:paramas success:^(<span class="keyword">id</span> json) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, json);</span><br><span class="line">        <span class="built_in">NSInteger</span> status = [json[<span class="string">@"status"</span>] integerValue];</span><br><span class="line">        <span class="keyword">if</span> (status == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="built_in">NSArray</span> *goodAttrsArr = [GoodAttrModel mj_objectArrayWithKeyValuesArray:json[<span class="string">@"data"</span>]];</span><br><span class="line">            <span class="keyword">self</span>.goodAttrsArr = goodAttrsArr;      </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            [SVProgressHUD showErrorWithStatus:<span class="string">@"暂无商品属性"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        [SVProgressHUD showErrorWithStatus:<span class="string">@"请重新加载"</span> maskType:SVProgressHUDMaskTypeGradient];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, error);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>2.传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下：</p>
-</blockquote>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSArray</span> *attrValueArr0 = ((GoodAttrModel *)goodAttrsArr[<span class="number">0</span>]).attr_value;</span><br><span class="line"><span class="built_in">CGFloat</span> one_btnsX = kBigMargin;</span><br><span class="line"><span class="built_in">CGFloat</span> one_btnY = <span class="built_in">CGRectGetMaxY</span>(_firstAttributeLbl.frame) + kSmallMargin;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; attrValueArr0.count ; i++) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *btnTittle = ((GoodAttrValueModel *)attrValueArr0[i]).attr_value;</span><br><span class="line">    <span class="built_in">CGSize</span> size = [btnTittle sizeWithAttributes:[<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:kButtonTextFont, <span class="built_in">NSFontAttributeName</span>, <span class="literal">nil</span>]];</span><br><span class="line">    <span class="built_in">UIButton</span> *btn = [<span class="built_in">UIButton</span> buttonWithType:<span class="built_in">UIButtonTypeCustom</span>];</span><br><span class="line">    [btn setTitle:btnTittle forState:<span class="built_in">UIControlStateNormal</span>];</span><br><span class="line">    btn.titleLabel.font=[<span class="built_in">UIFont</span> boldSystemFontOfSize:<span class="number">13</span>];</span><br><span class="line">    btn.tag = i;</span><br><span class="line">    [btn addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(attrs1BtnClick:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</span><br><span class="line">    btn.frame = <span class="built_in">CGRectMake</span>(one_btnsX, one_btnY, size.width + <span class="number">30</span>, <span class="number">35</span>);</span><br><span class="line">    one_btnsX += kBigMargin + size.width + kBigMargin;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (one_btnsX  &gt; kScreenW) &#123;</span><br><span class="line">        one_btnsX = kBigMargin;</span><br><span class="line">        one_btnY += <span class="number">45</span>;</span><br><span class="line">        <span class="keyword">if</span> ((one_btnsX + size.width + <span class="number">30</span>) &gt; kScreenW) &#123;</span><br><span class="line">            one_btnsX = kBigMargin;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        btn.frame = <span class="built_in">CGRectMake</span>(one_btnsX, one_btnY, size.width + <span class="number">30</span>, <span class="number">35</span>);</span><br><span class="line">        one_btnsX += <span class="number">15</span> + size.width + kBigMargin;</span><br><span class="line">    &#125;</span><br><span class="line">    [btn defaultStyleWithNormalTitleColor:HX_RGB(<span class="number">136</span>, <span class="number">137</span>, <span class="number">138</span>) andHighTitleColor:kWhiteColor andBorderColor:LXBorderColor andBackgroundColor:kWhiteColor andHighBgColor:kMAINCOLOR andSelectedBgColor:kMAINCOLOR withcornerRadius:<span class="number">2</span>];</span><br><span class="line">    [<span class="keyword">self</span>.scrollView addSubview:btn];</span><br><span class="line">    [<span class="keyword">self</span>.firstBtnsArr addObject:btn];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>3.通过Block来传递选中的属性，如下：</p>
-</blockquote>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="keyword">void</span> (^sureBtnsClick)(<span class="built_in">NSString</span> *num, <span class="built_in">NSString</span> *attr_id, <span class="built_in">NSString</span> *goods_attr_value_1, <span class="built_in">NSString</span> *goods_attr_value_2);</span><br><span class="line"></span><br><span class="line"><span class="meta">#pragma mark - 按钮点击事件</span></span><br><span class="line">- (<span class="keyword">void</span>)sureBtnClick &#123;</span><br><span class="line">    <span class="comment">// 购买数量</span></span><br><span class="line">    <span class="built_in">NSString</span> *num = <span class="keyword">self</span>.buyNumsLbl.text;</span><br><span class="line">    <span class="comment">// 属性ID str</span></span><br><span class="line">    <span class="built_in">NSString</span> *attr_id1 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@-%@"</span>, _goods_attr_1, _goods_attr_value_1];</span><br><span class="line">    <span class="built_in">NSString</span> *attr_id2 = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@-%@"</span>, _goods_attr_2, _goods_attr_value_2];</span><br><span class="line">    <span class="built_in">NSString</span> *attr_id = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@|%@"</span>, attr_id1, attr_id2];</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.sureBtnsClick) &#123;</span><br><span class="line">        <span class="keyword">self</span>.sureBtnsClick(num, attr_id, <span class="keyword">self</span>.goods_attr_value_1, <span class="keyword">self</span>.goods_attr_value_2);</span><br><span class="line">    &#125;</span><br><span class="line">    [<span class="keyword">self</span> removeView];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>小结：回头研究下用<a href="https://github.com/gsdios/SDAutoLayout" target="_blank" rel="external">SDAutoLayout</a>来实现此种自动布局，最近一直在体验此框架。<br>令附上Demo地址—&gt;<a href="https://github.com/huazhixi/chooseGoodsAttributesDemo" target="_blank" rel="external">传送门[Github]</a>，注：在此感谢朋友的阅读，忘伙伴们不要侵入当前后台。</p>
+<p>小结：回头研究下用<a href="https://github.com/gsdios/SDAutoLayout" target="_blank" rel="external">SDAutoLayout</a>来实现此种自动布局，最近一直在体验此框架。<br>令附上Demo地址—&gt;<a href="https://github.com/huazhixi/chooseGoodsAttributesDemo" target="_blank" rel="external">传送门[Github]</a>，注：在此感谢朋友的阅读。</p>
 </blockquote>
 
       
@@ -401,6 +392,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小开源/" rel="tag">#小开源</a>
+          
+        </div>
       
 
       
@@ -505,7 +502,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -572,7 +569,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-购物车属性选择功能"><span class="nav-text">1.购物车属性选择功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-获取物品属性信息，并将数据直接转换为模型数据。"><span class="nav-text">1. 获取物品属性信息，并将数据直接转换为模型数据。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下："><span class="nav-text">2.传递数据模型，生成相应的物品属性按钮，其中主要用到的是for循环实现对按钮的布局。代码如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-通过Block来传递选中的属性，如下："><span class="nav-text">3.通过Block来传递选中的属性，如下：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#购物车功能"><span class="nav-text">购物车功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-选择，删除（-滑动删除）和收藏功能"><span class="nav-text">1.选择，删除（+滑动删除）和收藏功能</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -699,7 +696,7 @@
     <script type="text/javascript">
       var disqus_shortname = 'huazhixi';
       var disqus_identifier = '2016/05/27/iOS之简单实现一般商城应用中物品属性选择界面/';
-      var disqus_title = 'iOS之简单实现一般商城应用中物品属性选择界面';
+      var disqus_title = 'iOS之一般商城应用中物品属性选择界面+购物车功能';
       var disqus_url = 'http://yoursite.com/2016/05/27/iOS之简单实现一般商城应用中物品属性选择界面/';
 
       function run_disqus_script(disqus_script){
