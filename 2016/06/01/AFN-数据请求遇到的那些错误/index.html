@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="网络请求," />
 
 
 
@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="银联支付集成,十分简单，前台做工作很少。">
+<meta name="description" content="在使用AFN获取网络数据的时候，返回的各种奇葩问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS应用之银联支付集成">
-<meta property="og:url" content="http://yoursite.com/2016/05/25/iOS应用之银联支付集成/index.html">
+<meta property="og:title" content="AFN 数据请求遇到的那些错误">
+<meta property="og:url" content="http://yoursite.com/2016/06/01/AFN-数据请求遇到的那些错误/index.html">
 <meta property="og:site_name" content="Huazhixi's blog">
-<meta property="og:description" content="银联支付集成,十分简单，前台做工作很少。">
-<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png">
-<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-0002.png">
-<meta property="og:updated_time" content="2016-05-26T01:48:26.000Z">
+<meta property="og:description" content="在使用AFN获取网络数据的时候，返回的各种奇葩问题。">
+<meta property="og:updated_time" content="2016-06-01T04:17:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS应用之银联支付集成">
-<meta name="twitter:description" content="银联支付集成,十分简单，前台做工作很少。">
-<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png">
+<meta name="twitter:title" content="AFN 数据请求遇到的那些错误">
+<meta name="twitter:description" content="在使用AFN获取网络数据的时候，返回的各种奇葩问题。">
 
 
 
@@ -114,7 +111,7 @@
   };
 </script>
 
-  <title> iOS应用之银联支付集成 | Huazhixi's blog </title>
+  <title> AFN 数据请求遇到的那些错误 | Huazhixi's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +291,7 @@
             
             
               
-                iOS应用之银联支付集成
+                AFN 数据请求遇到的那些错误
               
             
           </h1>
@@ -306,8 +303,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T12:11:26+08:00" content="2016-05-25">
-              2016-05-25
+            <time itemprop="dateCreated" datetime="2016-06-01T11:10:34+08:00" content="2016-06-01">
+              2016-06-01
             </time>
           </span>
 
@@ -336,8 +333,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/25/iOS应用之银联支付集成/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/25/iOS应用之银联支付集成/" itemprop="commentsCount"></span>
+                <a href="/2016/06/01/AFN-数据请求遇到的那些错误/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/01/AFN-数据请求遇到的那些错误/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -362,39 +359,15 @@
       
 
       
-        <p>银联支付集成,十分简单，前台做工作很少。<br><a id="more"></a></p>
+        <p>在使用AFN获取网络数据的时候，返回的各种奇葩问题。<br><a id="more"></a></p>
+<h4 id="1-Code-1016"><a href="#1-Code-1016" class="headerlink" title="1. Code=-1016"></a>1. <code>Code=-1016</code></h4><p>下面是返回的错误信息：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">Error Domain=com.alamofire.error.serialization.response Code=<span class="number">-1016</span> <span class="string">"Request failed: unacceptable content-type: text/plain"</span> UserInfo=&#123;com.alamofire.serialization.response.error.response=&lt;<span class="built_in">NSHTTPURLResponse</span>: <span class="number">0x7fa135a68900</span>&gt; &#123; URL: http:<span class="comment">//121.40.152.172:8080/sjdw/user/appLogin.do &#125; &#123; status code: 200, headers &#123;</span></span><br><span class="line">    <span class="string">"Content-Length"</span> = <span class="number">101</span>;</span><br><span class="line">    Date = <span class="string">"Wed, 01 Jun 2016 03:08:13 GMT"</span>;</span><br><span class="line">    Server = <span class="string">"Apache-Coyote/1.1"</span>;</span><br><span class="line">&#125; &#125;, <span class="built_in">NSErrorFailingURLKey</span>=http:<span class="comment">//121.40.152.172:8080/sjdw/user/appLogin.do, com.alamofire.serialization.response.error.data=&lt;7b227265 73756c74 4d736722 3a227375 63636573 73222c22 696e666f 223a7b22 75736572 4964223a 22386132 38393633 35353530 35626534 37303135 35303632 33393865 33303030 31222c22 75736572 4e616d65 223a2231 33303030 30303030 3030227d 7d&gt;, NSLocalizedDescription=Request failed: unacceptable content-type: text/plain&#125;</span></span><br></pre></td></tr></table></figure>
+<p>解决方法：<br>在 <code>AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</code>下面添加<br><code>manager.responseSerializer = [AFHTTPResponseSerializer serializer];</code>。</p>
 <blockquote>
-<ul>
-<li>借助于前几天项目刚刚上线，也在此继续分享下银联支付的相关方法和总结。本次分享的为<strong>支持纯无卡交易</strong>。</li>
-<li>鉴于上两次的支付分享，本次所做的内容比较简单，签名工作移到了后台进行，前端所做的工作非常少，只需要往后台POST过去商品价格，后台对订单进行相应的签名，返回签名后的<strong>tn字符串</strong>即可。</li>
-</ul>
+<p>// manager.responseSerializer = [AFHTTPResponseSerializer serializer];//使用这个将得到的是NSData<br>  //manager.responseSerializer = [AFJSONResponseSerializer serializer];//使用这个将得到的是JSON</p>
 </blockquote>
-<h3 id="1-事前准备工作"><a href="#1-事前准备工作" class="headerlink" title="1.事前准备工作"></a>1.事前准备工作</h3><ul>
-<li>添加工程所需的<a href="http://yun.baidu.com/s/1eRrppEa" target="_blank" rel="external">银联支付(iOS)SDK</a>,如下图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-0001.png" alt="导入工程中的SDK"></li>
-</ul>
-<h3 id="2-开发流程"><a href="#2-开发流程" class="headerlink" title="2. 开发流程"></a>2. 开发流程</h3><ul>
-<li>导入头文件 <code>#import &quot;UPPayPlugin.h&quot;</code> 以及设置代理 <code>&lt;UPPayPluginDelegate&gt;</code> </li>
-<li>触发唤起银联支付的方法（本次对订单的签名处理都在后台进行，在此附上后台<a href="http://yun.baidu.com/share/link?shareid=1963902588&amp;uk=1965504264" target="_blank" rel="external">银联支付SDK</a>）。</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - 银联支付相关方法</span></span><br><span class="line">- (<span class="keyword">IBAction</span>)yinlianPayAct &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *strUrl = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/App/Index/index/"</span>,SERVERURL]; <span class="comment">//从后台获取tn字符串的API地址</span></span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *params = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    params[<span class="string">@"money"</span>] = payCount; <span class="comment">// 支付金额</span></span><br><span class="line">    [LXHttpTool post:strUrl params:params success:^(<span class="keyword">id</span> json) &#123;</span><br><span class="line">        LXLog(<span class="string">@"%@"</span>, json);</span><br><span class="line">        <span class="built_in">NSString</span> *tnStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, json[<span class="string">@"tn"</span>]];</span><br><span class="line">        <span class="keyword">if</span> (tnStr) &#123;</span><br><span class="line">            [UPPayPlugin startPay:tnStr mode:<span class="string">@"00"</span> viewController:<span class="keyword">self</span> delegate:<span class="keyword">self</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            [MBProgressHUD showError:json[<span class="string">@"error"</span>]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; failure:^(<span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        LXLog(<span class="string">@"请求失败-%@"</span>, error);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：<code>mode:@&quot;00&quot;</code>为正式版本支付模式， <code>mode:@&quot;01&quot;</code>为测试版本支付模式，官方给的有测试账号，如下图：</p>
-</blockquote>
-<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/525-0002.png" alt="截图来自银联iOS开发指南"></p>
-<ul>
-<li>设置回调方法，对支付结果进行相应操作，后台数据相应的加减</li>
-</ul>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="meta">#pragma mark - UPPayPluginDelegate</span></span><br><span class="line">-(<span class="keyword">void</span>)UPPayPluginResult:(<span class="built_in">NSString</span>*)result &#123;</span><br><span class="line">    LXLog(<span class="string">@"%@"</span>, result);</span><br><span class="line">    <span class="keyword">if</span> ([result isEqual:<span class="string">@"success"</span>]) &#123;</span><br><span class="line">        [<span class="keyword">self</span> pay_success]; <span class="comment">// 银联支付成功之后，往后台发送相应订单数据的方法。</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ([result isEqual:<span class="string">@"fail"</span>]) &#123;</span><br><span class="line">        [MBProgressHUD showError:<span class="string">@"支付失败"</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        [MBProgressHUD showError:<span class="string">@"您已取消支付"</span>];</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：支付成功后，往后台发送数据是<strong>必需的</strong>，对后台数据进行<strong>相应的更新</strong>。</p>
-</blockquote>
-<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><blockquote>
-<ul>
-<li>对于以上分享的支付方法，仔细琢磨一下，发现有漏洞。通过第三方支付，如果支付成功返回App之后，此时网络突然出现问题，不能往后台正常发送相应数据，导致后台数据更新不了，可是银子已经扣过，这不是要挂的节奏么（求高人指点，如何避免此种BUG）。</li>
-<li>鉴于上个项目中各种单个支付方法，太过累赘，对于目前开发的项目启用<a href="https://www.pingxx.com" target="_blank" rel="external">Ping++</a>支付方法，度娘解释：<strong>Ping++ 是上海简米网络科技有限公司旗下的移动支付 SDK 产品，</strong>整合了目前市面上各种支付渠道。</li>
-<li>Ping++支付分享，待续…</li>
-</ul>
-</blockquote>
+<p>注:<br>1.后台接收的是json格式，如：{参数：JSON},例：<code>param={userName:13000000000,passWord:123321}</code><br>2.默认的Response为json数据，通过添加以上代码，返回的数据将会是一个对象，在success成功的方法块中对responseObject进行处理，<code>id json = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];</code> 转换成json格式。</p>
+<p>附完整代码：<br><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="keyword">IBAction</span>)logInClick:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    </span><br><span class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</span><br><span class="line">    manager.responseSerializer = [AFHTTPResponseSerializer serializer];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *dict  = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    dict[<span class="string">@"userName"</span>] =  <span class="keyword">self</span>.phoneTextField.text;</span><br><span class="line">    dict[<span class="string">@"passWord"</span>] = <span class="keyword">self</span>.passworldTextField.text;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSString</span> *jsonStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, dict];</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSMutableDictionary</span> *params  = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    params[<span class="string">@"param"</span>] =  jsonStr;</span><br><span class="line">    </span><br><span class="line">    [manager POST:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@/sjdw/user/appLogin.do"</span>,SERVER] parameters:params progress:<span class="literal">nil</span> success:^(<span class="built_in">NSURLSessionDataTask</span> * _Nonnull task, <span class="keyword">id</span>  _Nullable responseObject) &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">id</span> json = [<span class="built_in">NSJSONSerialization</span> JSONObjectWithData:responseObject options:<span class="number">0</span> error:<span class="literal">nil</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,json);</span><br><span class="line">    &#125; failure:^(<span class="built_in">NSURLSessionDataTask</span> * _Nullable task, <span class="built_in">NSError</span> * _Nonnull error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,error);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -416,7 +389,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/网络请求/" rel="tag">#网络请求</a>
           
         </div>
       
@@ -425,17 +398,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/25/iOS应用之微信支付集成/" rel="next" title="iOS应用之微信支付集成">
-                <i class="fa fa-chevron-left"></i> iOS应用之微信支付集成
+              <a href="/2016/05/27/iOS之简单实现一般商城应用中物品属性选择界面/" rel="next" title="iOS之一般商城应用中物品属性选择界面+购物车功能">
+                <i class="fa fa-chevron-left"></i> iOS之一般商城应用中物品属性选择界面+购物车功能
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/27/iOS应用之支付宝集成总结/" rel="prev" title="iOS应用之支付宝集成总结">
-                iOS应用之支付宝集成总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -594,7 +563,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-事前准备工作"><span class="nav-text">1.事前准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-开发流程"><span class="nav-text">2. 开发流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-总结"><span class="nav-text">3. 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Code-1016"><span class="nav-text">1. Code=-1016</span></a></li></ol></div>
             
           </div>
         </section>
@@ -720,9 +689,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'huazhixi';
-      var disqus_identifier = '2016/05/25/iOS应用之银联支付集成/';
-      var disqus_title = 'iOS应用之银联支付集成';
-      var disqus_url = 'http://yoursite.com/2016/05/25/iOS应用之银联支付集成/';
+      var disqus_identifier = '2016/06/01/AFN-数据请求遇到的那些错误/';
+      var disqus_title = 'AFN 数据请求遇到的那些错误';
+      var disqus_url = 'http://yoursite.com/2016/06/01/AFN-数据请求遇到的那些错误/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
