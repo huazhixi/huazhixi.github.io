@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/06/01/AFN-数据请求遇到的那些错误/index.html">
 <meta property="og:site_name" content="Huazhixi's blog">
 <meta property="og:description" content="在使用AFN获取网络数据的时候，返回的各种奇葩问题。">
-<meta property="og:updated_time" content="2016-06-01T04:17:57.000Z">
+<meta property="og:updated_time" content="2016-08-23T03:59:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AFN 数据请求遇到的那些错误">
 <meta name="twitter:description" content="在使用AFN获取网络数据的时候，返回的各种奇葩问题。">
@@ -119,6 +119,16 @@
   
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11b9adbb16ced092a05265acd57";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -350,7 +360,9 @@
 
       
         <p>在使用AFN获取网络数据的时候，返回的各种奇葩问题。<br><a id="more"></a></p>
-<h4 id="1-Code-1016"><a href="#1-Code-1016" class="headerlink" title="1. Code=-1016"></a>1. <code>Code=-1016</code></h4><p>下面是返回的错误信息：</p>
+<h4 id="1-Code-3840-如下："><a href="#1-Code-3840-如下：" class="headerlink" title="1. Code=3840 如下："></a>1. <code>Code=3840</code> 如下：</h4><figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">fails Error Domain=<span class="built_in">NSCocoaErrorDomain</span> Code=<span class="number">3840</span> <span class="string">"JSON text did not start with array or object and option to allow fragments not set."</span> UserInfo=&#123;<span class="built_in">NSDebugDescription</span>=JSON text did not start with array or object and option to allow fragments not set.&#125;</span><br></pre></td></tr></table></figure>
+<p>原因及解决方法：<br> 1.直接找后台(Php)人员，主要原因在于后台人员在处理前端上传图片之后对图片处理的方法不正确导致。</p>
+<h4 id="2-Code-1016"><a href="#2-Code-1016" class="headerlink" title="2. Code=-1016"></a>2. <code>Code=-1016</code></h4><p>下面是返回的错误信息：</p>
 <figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">Error Domain=com.alamofire.error.serialization.response Code=<span class="number">-1016</span> <span class="string">"Request failed: unacceptable content-type: text/plain"</span> UserInfo=&#123;com.alamofire.serialization.response.error.response=&lt;<span class="built_in">NSHTTPURLResponse</span>: <span class="number">0x7fa135a68900</span>&gt; &#123; URL: http:<span class="comment">//121.40.152.172:8080/sjdw/user/appLogin.do &#125; &#123; status code: 200, headers &#123;</span></span><br><span class="line">    <span class="string">"Content-Length"</span> = <span class="number">101</span>;</span><br><span class="line">    Date = <span class="string">"Wed, 01 Jun 2016 03:08:13 GMT"</span>;</span><br><span class="line">    Server = <span class="string">"Apache-Coyote/1.1"</span>;</span><br><span class="line">&#125; &#125;, <span class="built_in">NSErrorFailingURLKey</span>=http:<span class="comment">//121.40.152.172:8080/sjdw/user/appLogin.do, com.alamofire.serialization.response.error.data=&lt;7b227265 73756c74 4d736722 3a227375 63636573 73222c22 696e666f 223a7b22 75736572 4964223a 22386132 38393633 35353530 35626534 37303135 35303632 33393865 33303030 31222c22 75736572 4e616d65 223a2231 33303030 30303030 3030227d 7d&gt;, NSLocalizedDescription=Request failed: unacceptable content-type: text/plain&#125;</span></span><br></pre></td></tr></table></figure>
 <p>解决方法：<br>在 <code>AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</code>下面添加<br><code>manager.responseSerializer = [AFHTTPResponseSerializer serializer];</code>。</p>
 <blockquote>
@@ -553,7 +565,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Code-1016"><span class="nav-text">1. Code=-1016</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Code-3840-如下："><span class="nav-text">1. Code=3840 如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Code-1016"><span class="nav-text">2. Code=-1016</span></a></li></ol></div>
             
           </div>
         </section>
