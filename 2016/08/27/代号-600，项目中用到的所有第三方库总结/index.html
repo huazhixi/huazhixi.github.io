@@ -1,0 +1,990 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="主要来记录最近做的项目当中所有用到的第三方库，对用到的轮子进行总结和归纳。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代号-600，项目中用到的所有第三方库总结">
+<meta property="og:url" content="http://yoursite.com/2016/08/27/代号-600，项目中用到的所有第三方库总结/index.html">
+<meta property="og:site_name" content="Huazhixi's blog">
+<meta property="og:description" content="主要来记录最近做的项目当中所有用到的第三方库，对用到的轮子进行总结和归纳。">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/HMQRCodeScanner.gif">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/HMSegmentedControl.png">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/RatingBarBar.gif">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/687474703a2f2f7777342e73696e61696d672e636e2f626d6964646c652f39623831343665646a7731657376797471376c777267323038703066636538322e676966.gif">
+<meta property="og:image" content="https://camo.githubusercontent.com/6ed028acbf67707d622344e0ef1bc3b098425b50/687474703a2f2f662e636c2e6c792f6974656d732f32473146315a304d306b306832553356317033392f535650726f67726573734855442e676966">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/374539-20151214085730412-1268161182.gif">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/Areapicker.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/mokey1422/gifResource/master/2015-08-25%2023_29_41.gif">
+<meta property="og:image" content="https://camo.githubusercontent.com/d28144796042a6c6bddf7d0c097be831cea8810a/68747470733a2f2f7261772e6769746875622e636f6d2f6b6f6c7976616e2f6b786d656e752f6d61737465722f73637265656e73686f742f6578616d706c652e676966">
+<meta property="og:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/XLPasswordView.png">
+<meta property="og:image" content="https://github.com/ACEYL/ZZPhotoKit/raw/master/image/demonstrate.gif">
+<meta property="og:updated_time" content="2016-08-31T11:04:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代号-600，项目中用到的所有第三方库总结">
+<meta name="twitter:description" content="主要来记录最近做的项目当中所有用到的第三方库，对用到的轮子进行总结和归纳。">
+<meta name="twitter:image" content="http://7xq2wz.com1.z0.glb.clouddn.com/HMQRCodeScanner.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 代号-600，项目中用到的所有第三方库总结 | Huazhixi's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?11b9adbb16ced092a05265acd57";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Huazhixi's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">keep going, keep fighting</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '83pfz2FMRhuyzfCskMCw','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                代号-600，项目中用到的所有第三方库总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-27T16:00:52+08:00" content="2016-08-27">
+              2016-08-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS项目杂记/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS项目杂记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/27/代号-600，项目中用到的所有第三方库总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/27/代号-600，项目中用到的所有第三方库总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>主要来记录最近做的项目当中所有用到的第三方库，对用到的轮子进行总结和归纳。<br><a id="more"></a></p>
+<blockquote>
+<p>目前开发项目中，以已为例，不再像之前那样把所有的第三方库下到本地，再导入工程中，然后就是苦逼的开始往Linked Frameworks and Libriaries中添加各种不懂的文件，能捣鼓半天，自我感觉牛逼，实则是傻X的。<br>然则CocoaPods解决了这些繁琐的问题，所以开发项目用就行，不逻辑那么多了。</p>
+</blockquote>
+<h2 id="先来一个总览"><a href="#先来一个总览" class="headerlink" title="先来一个总览"></a>先来一个总览</h2><table>
+<thead>
+<tr>
+<th>CocoaPods管理</th>
+<th>本地导入的三方库</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AFNetworking</td>
+<td>Areapicker</td>
+</tr>
+<tr>
+<td>HMQRCodeScanner</td>
+<td>GBTagListView</td>
+</tr>
+<tr>
+<td>HMSegmentedControl</td>
+<td>KxMenu</td>
+</tr>
+<tr>
+<td>IQKeyboardManager</td>
+<td>PlaceholderTextView</td>
+</tr>
+<tr>
+<td>JKCountDownButton</td>
+<td>UIViewController+ImagePicker</td>
+</tr>
+<tr>
+<td>FDStackView</td>
+<td>XLPasswordView</td>
+</tr>
+<tr>
+<td>MD5Digest</td>
+<td>ZZPhotoKit</td>
+</tr>
+<tr>
+<td>MJExtension</td>
+<td></td>
+</tr>
+<tr>
+<td>MJRefresh</td>
+<td></td>
+</tr>
+<tr>
+<td>PPNetworkHelper</td>
+<td></td>
+</tr>
+<tr>
+<td>RatingBar</td>
+<td></td>
+</tr>
+<tr>
+<td>SDAutoLayout</td>
+<td></td>
+</tr>
+<tr>
+<td>SDCycleScrollView</td>
+<td></td>
+</tr>
+<tr>
+<td>SDWebImage</td>
+<td></td>
+</tr>
+<tr>
+<td>SVProgressHUD</td>
+<td></td>
+</tr>
+<tr>
+<td>UITextView+Placeholder</td>
+<td></td>
+</tr>
+<tr>
+<td>WZLBadge</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-通过CocoaPods管理的第三方库"><a href="#1-通过CocoaPods管理的第三方库" class="headerlink" title="1.通过CocoaPods管理的第三方库"></a>1.通过CocoaPods管理的第三方库</h3><p>简单脑补一下podfile语法：</p>
+<pre><code>source &apos;URL&apos; : 指定镜像仓库的源
+platform : ios,  &apos;6.0&apos;  : 指定所支持系统和最低版本
+target &apos;YOUR_TARGET&apos; do : 允许你在工程中限定依赖项只在你指定的targets中生效
+pod  &apos;库名&apos;, &apos;&apos;   :   引入库，什么版本都可以（一般就是最新版本了）
+</code></pre><p><a href="http://25.io/smaller/" target="_blank" rel="external">Podfile语法规范</a> , <a href="http://25.io/smaller/" target="_blank" rel="external">Podfile 的用法见文档</a></p>
+<h4 id="AFNetworking"><a href="#AFNetworking" class="headerlink" title="AFNetworking"></a>AFNetworking</h4><p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">gitHub地址</a></p>
+<pre><code>source &apos;https://github.com/CocoaPods/Specs.git&apos;
+platform :ios, &apos;8.0&apos;
+
+target &apos;TargetName&apos; do
+pod &apos;AFNetworking&apos;, &apos;~&gt; 3.0&apos;
+end
+</code></pre><ul>
+<li>自不必过多解释，iOS开发几乎都离不开的吧。</li>
+<li>正常情况下，开发之前都会对其进行二次封装，例如：有些需要对Post的参数进行简单的BASE64转换，虽然简单不至于信息直接暴露于外。</li>
+</ul>
+<p>BASE64简单加密方法：</p>
+<pre><code>NSData * jsonData = [NSJSONSerialization dataWithJSONObject:加密内容 options:NSJSONWritingPrettyPrinted error:nil];
+// Get NSString from NSData object in Base64
+NSString *base64Encoded = [jsonData base64EncodedStringWithOptions:0];
+</code></pre><h4 id="HMQRCodeScanner"><a href="#HMQRCodeScanner" class="headerlink" title="HMQRCodeScanner"></a>HMQRCodeScanner</h4><p><a href="https://github.com/liufan321/HMQRCodeScanner" target="_blank" rel="external">gitHub地址</a> </p>
+<p>UI界面的轻量级二维码扫描及生成框架,包含Objective-C和Swift</p>
+<pre><code>platform :ios, &apos;8.0&apos;
+use_frameworks!
+
+pod &apos;HMQRCodeScanner&apos;
+</code></pre><ul>
+<li>提供一个导航控制器，扫描 二维码 / 条形码</li>
+<li>能够生成指定 字符串 + avatar(可选) 的二维码名片</li>
+<li>能够识别相册图片中的二维码(iOS 64 位设备)</li>
+</ul>
+<p>效果图；</p>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/HMQRCodeScanner.gif" alt=""></p>
+<h4 id="HMSegmentedControl"><a href="#HMSegmentedControl" class="headerlink" title="HMSegmentedControl"></a>HMSegmentedControl</h4><p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="external">gitHub地址</a></p>
+<pre><code>pod &apos;HMSegmentedControl&apos;
+</code></pre><ul>
+<li>支持文字和图片两种显示方式</li>
+<li>支持水平滚动</li>
+<li>支持字体颜色，字距，阴影等文本属性</li>
+<li>选择条可以在文字上面和下面两种方式</li>
+<li>支持block回调</li>
+<li>支持ARC，iOS &gt;= 7</li>
+</ul>
+<p>效果图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/HMSegmentedControl.png" alt=""></p>
+<h4 id="IQKeyboardManager"><a href="#IQKeyboardManager" class="headerlink" title="IQKeyboardManager"></a>IQKeyboardManager</h4><p><a href="https://github.com/hackiftekhar/IQKeyboardManager" target="_blank" rel="external">gitHub地址</a></p>
+<p>键盘收缩自适应，方便快捷全局设置。</p>
+<pre><code>pod &apos;IQKeyboardManager&apos;
+</code></pre><ul>
+<li>只要能滚动的视图，各种适应，告别繁琐的计算，谁用谁知道</li>
+</ul>
+<h4 id="JKCountDownButton"><a href="#JKCountDownButton" class="headerlink" title="JKCountDownButton"></a>JKCountDownButton</h4><p><a href="https://github.com/shaojiankui/JKCountDownButton" target="_blank" rel="external">gitHub地址</a></p>
+<p>子类化UIButton实现iOS倒计时按钮,常常用于注册等发送验证码的时候进行倒计时操作</p>
+<pre><code>platform :ios
+pod &apos;JKCountDownButton&apos;
+</code></pre><ul>
+<li>使用比较方便，需要自己进行相关的调整，来适应项目需求</li>
+</ul>
+<h4 id="FDStackView"><a href="#FDStackView" class="headerlink" title="FDStackView"></a>FDStackView</h4><p><a href="https://github.com/forkingdog/FDStackView" target="_blank" rel="external">gitHub地址</a></p>
+<p>能够在iOS6以上使用UIStackView，使用xib拖拉拽,forkingdog出品，很是方便。</p>
+<pre><code>platform :ios, &apos;7.0&apos;
+pod &quot;FDStackView&quot;, &quot;1.0&quot;
+</code></pre><ul>
+<li>支持纯代码使用FDStackView以及使用xib。</li>
+<li>最低支付Xcode 7+</li>
+</ul>
+<h4 id="MD5Digest"><a href="#MD5Digest" class="headerlink" title="MD5Digest"></a>MD5Digest</h4><p><a href="https://github.com/keith/MD5Digest" target="_blank" rel="external">gitHub地址</a></p>
+<p>对Post的参数进行MD5加密，加密结果不可逆，并且有较高的抗碰撞特性。</p>
+<pre><code>pod &apos;MD5Digest&apos;
+</code></pre><ul>
+<li>配合后台开发人员对请求数据进行加密，形成密文</li>
+<li>项目中的加密方式：Base64_encode(md5(md5($action).md5($key)))</li>
+<li>先对方法MD5加密，再加盐，拼接后再对密文MD5加密，最后再转成Base64密文。</li>
+<li>详情见 简书作者 <strong>圆脸黑猫警长</strong>  <a href="http://www.jianshu.com/p/d823eb95abb6" target="_blank" rel="external">iOS Base64、凯撒加密 ，MD5加密（16、32位）</a></li>
+<li>注：项目中后台要求用的是64位，所以代码中<code>CC_MD5_DIGEST_LENGTH</code>改成<code>CC_MD5_BLOCK_BYTES</code></li>
+</ul>
+<h4 id="MJExtension"><a href="#MJExtension" class="headerlink" title="MJExtension"></a>MJExtension</h4><p><a href="https://github.com/CoderMJLee/MJExtension" target="_blank" rel="external">gitHub地址</a></p>
+<p>转换速度快、使用简单方便的字典转模型框架</p>
+<pre><code>pod &apos;MJExtension&apos;
+</code></pre><ul>
+<li>字典和模型之间互相转换的超轻量级框架</li>
+<li>只需要一行代码，就能实现模型的所有属性进行Coding（归档和解档）</li>
+<li>能够和其相比的就<a href="https://github.com/ibireme/YYModel" target="_blank" rel="external">YYModel</a>了</li>
+</ul>
+<h4 id="MJRefresh"><a href="#MJRefresh" class="headerlink" title="MJRefresh"></a>MJRefresh</h4><p><a href="https://github.com/CoderMJLee/MJRefresh" target="_blank" rel="external">gitHub地址</a></p>
+<p>十分强大的下拉刷新和卡拉加载的框架，明杰出品实属精品。</p>
+<pre><code>pod &apos;MJRefresh&apos;
+</code></pre><ul>
+<li>支持各种自定义效果</li>
+<li>具体效果<a href="https://github.com/CoderMJLee/MJRefresh" target="_blank" rel="external">gitHub地址</a>上看了。</li>
+</ul>
+<h4 id="PPNetworkHelper"><a href="#PPNetworkHelper" class="headerlink" title="PPNetworkHelper"></a>PPNetworkHelper</h4><p><a href="https://github.com/jkpang/PPNetworkHelper" target="_blank" rel="external">gitHub地址</a></p>
+<p>对AFNetworking 3.x 与YYCache的二次封装,存取超简单,告别FMDB!</p>
+<pre><code>pod &apos;PPNetworkHelper&apos;
+</code></pre><ul>
+<li>封装常见的GET、POST、文件上传/下载</li>
+<li>网络状态监测的功能、方法接口简洁明了</li>
+<li>结合YYCache实现对网络数据的缓存</li>
+</ul>
+<h4 id="RatingBar"><a href="#RatingBar" class="headerlink" title="RatingBar"></a>RatingBar</h4><p><a href="https://github.com/yuyedaidao/RatingBar" target="_blank" rel="external">gitHub地址</a></p>
+<pre><code>pod RatingBar, &apos;~&gt;0.0.1&apos;
+</code></pre><ul>
+<li>实现简单的星星评分功能</li>
+</ul>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/RatingBarBar.gif" alt=""></p>
+<h4 id="SDAutoLayout"><a href="#SDAutoLayout" class="headerlink" title="SDAutoLayout"></a>SDAutoLayout</h4><p><a href="https://github.com/gsdios/SDAutoLayout" target="_blank" rel="external">gitHub地址</a></p>
+<p>一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应。</p>
+<pre><code>pod &apos;SDAutoLayout&apos;, &apos;~&gt; 2.1.3&apos;
+</code></pre><ul>
+<li>碰见一些内容自增长的效果用这个库就对了，不算太麻烦。</li>
+<li>作者有用这个库实现类似微信的效果，很赞。</li>
+</ul>
+<h4 id="SDCycleScrollView"><a href="#SDCycleScrollView" class="headerlink" title="SDCycleScrollView"></a>SDCycleScrollView</h4><p><a href="https://github.com/gsdios/SDCycleScrollView" target="_blank" rel="external">gitHub地址</a></p>
+<p>无限循环图片、文字轮播器。</p>
+<pre><code>pod &apos;SDCycleScrollView&apos;,&apos;~&gt; 1.64&apos;
+</code></pre><ul>
+<li>常用在顶部和商品详情的轮播图</li>
+<li>支持图片下面各个图片的文字显示</li>
+</ul>
+<p>效果图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/687474703a2f2f7777342e73696e61696d672e636e2f626d6964646c652f39623831343665646a7731657376797471376c777267323038703066636538322e676966.gif" alt=""></p>
+<h4 id="SDWebImage"><a href="#SDWebImage" class="headerlink" title="SDWebImage"></a>SDWebImage</h4><p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="external">gitHub地址</a></p>
+<p>网络图片加载</p>
+<pre><code>platform :ios, &apos;7.0&apos;
+pod &apos;SDWebImage&apos;, &apos;~&gt;3.8&apos;
+</code></pre><ul>
+<li>开发必备，不多解释</li>
+</ul>
+<h4 id="SVProgressHUD"><a href="#SVProgressHUD" class="headerlink" title="SVProgressHUD"></a>SVProgressHUD</h4><p><a href="https://github.com/SVProgressHUD/SVProgressHUD" target="_blank" rel="external">gitHub地址</a></p>
+<p>HUD提示器，下载，登录，显示成功或者失败的提示信息。</p>
+<pre><code>pod &apos;SVProgressHUD&apos;
+</code></pre><ul>
+<li>使用的时候就再封装一层，白色和黑色的背景自己选择，主要显示停留时间是5秒，自定义下吧。</li>
+</ul>
+<p>效果图：</p>
+<p><img src="https://camo.githubusercontent.com/6ed028acbf67707d622344e0ef1bc3b098425b50/687474703a2f2f662e636c2e6c792f6974656d732f32473146315a304d306b306832553356317033392f535650726f67726573734855442e676966" alt=""></p>
+<h4 id="UITextView-Placeholder"><a href="#UITextView-Placeholder" class="headerlink" title="UITextView+Placeholder"></a>UITextView+Placeholder</h4><p><a href="https://github.com/devxoul/UITextView-Placeholder" target="_blank" rel="external">gitHub地址</a></p>
+<pre><code>pod &apos;UITextView+Placeholder&apos;, &apos;~&gt; 1.2&apos;
+</code></pre><ul>
+<li>简单支持富文本显示</li>
+</ul>
+<h4 id="WZLBadge"><a href="#WZLBadge" class="headerlink" title="WZLBadge"></a>WZLBadge</h4><p><a href="https://github.com/weng1250/WZLBadge" target="_blank" rel="external">gitHub地址</a></p>
+<p>视图角标提示，按钮，图片等,支持四种不同的效果，心脏跳动效果，呼吸灯效果，横向抖动，静止状态。</p>
+<pre><code>pod &apos;WZLBadge&apos;
+</code></pre><ul>
+<li>小红点</li>
+<li>红底白字“new”</li>
+<li>红底白字数字</li>
+</ul>
+<p>效果图：<br><img src="http://7xq2wz.com1.z0.glb.clouddn.com/374539-20151214085730412-1268161182.gif" alt=""></p>
+<h3 id="2-本地导入的第三方库"><a href="#2-本地导入的第三方库" class="headerlink" title="2.本地导入的第三方库"></a>2.本地导入的第三方库</h3><h4 id="Areapicker"><a href="#Areapicker" class="headerlink" title="Areapicker"></a>Areapicker</h4><p>地区选择器，动态联动，网络获取地址。</p>
+<p>效果图：</p>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/Areapicker.gif" alt=""></p>
+<h4 id="GBTagListView"><a href="#GBTagListView" class="headerlink" title="GBTagListView"></a>GBTagListView</h4><p>流式标签添加点击事件,支持block回调统计当前选择的标签。</p>
+<p><a href="https://github.com/mokey1422/GBTaglistView-2.0" target="_blank" rel="external">gitHub地址</a></p>
+<p>效果图：</p>
+<p><img src="https://raw.githubusercontent.com/mokey1422/gifResource/master/2015-08-25%2023_29_41.gif" alt=""></p>
+<h4 id="KxMenu"><a href="#KxMenu" class="headerlink" title="KxMenu"></a>KxMenu</h4><p>下拉选项按钮，一般出现在导航栏的右侧按钮。</p>
+<p><a href="https://github.com/kolyvan/kxmenu" target="_blank" rel="external">gitHub地址</a></p>
+<ul>
+<li>功能强大，使用方便，根据按钮的位置弹出，通过block回调。</li>
+<li>字体大小和颜色可更改，背影色为渐变的效果，还可以添加图片</li>
+</ul>
+<p>效果图：</p>
+<p><img src="https://camo.githubusercontent.com/d28144796042a6c6bddf7d0c097be831cea8810a/68747470733a2f2f7261772e6769746875622e636f6d2f6b6f6c7976616e2f6b786d656e752f6d61737465722f73637265656e73686f742f6578616d706c652e676966" alt=""></p>
+<h4 id="PlaceholderTextView"><a href="#PlaceholderTextView" class="headerlink" title="PlaceholderTextView"></a>PlaceholderTextView</h4><p>对TextView设置placeholder属性。</p>
+<p><a href="https://github.com/xiaohongjun0509/PlaceHolderTextView/blob/master/PlaceHolderTextView.h" target="_blank" rel="external">gitHub地址</a></p>
+<ul>
+<li>可以设置holder的文字，颜色，字体大小，起始位置。</li>
+</ul>
+<h4 id="UIViewController-ImagePicker"><a href="#UIViewController-ImagePicker" class="headerlink" title="UIViewController+ImagePicker"></a>UIViewController+ImagePicker</h4><p>更改单个图片使用，主要是针对头像的时候，使用方便。</p>
+<h4 id="XLPasswordView"><a href="#XLPasswordView" class="headerlink" title="XLPasswordView"></a>XLPasswordView</h4><p>一个简单的密码输入组件,自己写的随机数字键盘,UI类似支付宝支付密码界面,使用简单,只需要三行代码就可以 , 代理方法也很简单明了。</p>
+<p><a href="https://github.com/Shannoon/XLPasswordView" target="_blank" rel="external">gitHub地址</a></p>
+<ul>
+<li>代理方法清晰明了，开发者良心啊。</li>
+</ul>
+<p>效果图：</p>
+<p><img src="http://7xq2wz.com1.z0.glb.clouddn.com/XLPasswordView.png" alt=""></p>
+<h4 id="ZZPhotoKit"><a href="#ZZPhotoKit" class="headerlink" title="ZZPhotoKit"></a>ZZPhotoKit</h4><p>基于Photos和AVFoundation框架开源，相册多选与相机连拍。</p>
+<p><a href="https://github.com/ACEYL/ZZPhotoKit" target="_blank" rel="external">github</a></p>
+<ul>
+<li>相册多选基于最新的 Photos 框架</li>
+<li>相机连续拍摄基于AVFundation 框架。</li>
+<li>图片浏览器支持 SDWebImage 加载图片</li>
+</ul>
+<p>效果图：</p>
+<p><img src="https://github.com/ACEYL/ZZPhotoKit/raw/master/image/demonstrate.gif" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/01/AFN-数据请求遇到的那些错误/" rel="next" title="AFN 数据请求遇到的那些错误">
+                <i class="fa fa-chevron-left"></i> AFN 数据请求遇到的那些错误
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="huazhixi" />
+          <p class="site-author-name" itemprop="name">huazhixi</p>
+          <p class="site-description motion-element" itemprop="description">keep going, keep fighting</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huazhixi" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/02b73e8b1f8d/latest_articles" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/huazhixi" title="GitHub" target="_blank">GitHub</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com/users/02b73e8b1f8d/latest_articles" title="Jianshu" target="_blank">Jianshu</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#先来一个总览"><span class="nav-text">先来一个总览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-通过CocoaPods管理的第三方库"><span class="nav-text">1.通过CocoaPods管理的第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AFNetworking"><span class="nav-text">AFNetworking</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMQRCodeScanner"><span class="nav-text">HMQRCodeScanner</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HMSegmentedControl"><span class="nav-text">HMSegmentedControl</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IQKeyboardManager"><span class="nav-text">IQKeyboardManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JKCountDownButton"><span class="nav-text">JKCountDownButton</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FDStackView"><span class="nav-text">FDStackView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MD5Digest"><span class="nav-text">MD5Digest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MJExtension"><span class="nav-text">MJExtension</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MJRefresh"><span class="nav-text">MJRefresh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PPNetworkHelper"><span class="nav-text">PPNetworkHelper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RatingBar"><span class="nav-text">RatingBar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDAutoLayout"><span class="nav-text">SDAutoLayout</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDCycleScrollView"><span class="nav-text">SDCycleScrollView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SDWebImage"><span class="nav-text">SDWebImage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVProgressHUD"><span class="nav-text">SVProgressHUD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UITextView-Placeholder"><span class="nav-text">UITextView+Placeholder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WZLBadge"><span class="nav-text">WZLBadge</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-本地导入的第三方库"><span class="nav-text">2.本地导入的第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Areapicker"><span class="nav-text">Areapicker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GBTagListView"><span class="nav-text">GBTagListView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KxMenu"><span class="nav-text">KxMenu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PlaceholderTextView"><span class="nav-text">PlaceholderTextView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UIViewController-ImagePicker"><span class="nav-text">UIViewController+ImagePicker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XLPasswordView"><span class="nav-text">XLPasswordView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ZZPhotoKit"><span class="nav-text">ZZPhotoKit</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huazhixi</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'huazhixi';
+      var disqus_identifier = '2016/08/27/代号-600，项目中用到的所有第三方库总结/';
+      var disqus_title = '代号-600，项目中用到的所有第三方库总结';
+      var disqus_url = 'http://yoursite.com/2016/08/27/代号-600，项目中用到的所有第三方库总结/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
+  
+</body>
+</html>
