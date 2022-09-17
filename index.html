@@ -50,7 +50,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-09-17 18:00:07'
+  postUpdate: '2022-09-17 18:52:31'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -140,7 +140,78 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="ivan's Blog" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/home_top_banner_img.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ivan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">ivan's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/huazhixi" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huazhi_xi@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/Block-block%E6%9C%AC%E8%B4%A8/" title="Block - __block本质">Block - __block本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T09:54:02.000Z" title="发表于 2022-09-17 17:54:02">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Category/">Category</a></span></div><div class="content">__block修饰符
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/home_top_banner_img.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ivan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">ivan's Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/huazhixi" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huazhi_xi@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/%E4%BD%B3%E8%83%BD%E7%9B%B8%E6%9C%BA/" title="佳能相机">佳能相机</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T10:25:51.000Z" title="发表于 2022-09-17 18:25:51">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%9B%B8%E6%9C%BA/">相机</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Camera/">Camera</a></span></div><div class="content">一、佳能单反相机的相关问题1.佳能单反和尼康单反哪个好1、尼康的使用评价：上手较难，风景很好
+
+尼康偏向金属风，所以材质坚硬，沉重的质感不得不说是相机品质的体现，风景拍摄很赞。但同时也增加了携带的困难。
+繁琐和困难的上手教程是很多新手头疼的问题，所以新手上路并不推荐。
+
+2、佳能的使用体验：上手容易，成像优质
+
+佳能优越的人像摄影使佳能在摄影人像方面非常受人欢迎。搭载优秀的图像处理器，使得佳能拍出来的照片在后期处理非常出色。
+简单易学的操作，让佳能深受新手欢迎。人们可以很容易地上手色彩和操作页面。
+
+结论：
+
+如果你是新手，对人像拍摄要求高，那么佳能可能更适合你；
+反之如果你也是个专业大佬了，对风景拍摄要求高，那么可以选尼康。
+
+2.单反相机 VS 微单相机 VS 普通数码相机（三者的比较）3.佳能单反型号的比较佳能所有数码单反采用以数字加字母D方式命名。在数字方面，数字位数越少，型号越高端。
+
+全画幅和旗舰APS-C画幅单反：一位数机型XD
+高端APS-C画幅单反：两位数XXD）
+中端APS-C画幅单反：三位数XXXD
+低端APS-C画幅单反：四位数XXXXD
+
+二、如何去选购一台好 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/%E6%80%9D%E8%80%83%E8%87%B4%E5%AF%8C/" title="思考致富">思考致富</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T10:10:01.000Z" title="发表于 2022-09-17 18:10:01">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%8A%B1%E5%BF%97/">励志</a></span></div><div class="content">一、心想才能事成
+如果一个人真想做一件事，那他一定会做成。
+成功人士，最伟大的成功在于，面临失败时能坚持再迈出一步。
+不管一件事有多困难，都要坚持做下去。
+成功钟情于那些有成功意识的人。
+我们是自己命运的主宰者。
+
+二、欲望
+拥有梦想，希望，愿望，欲望和计划。
+明确的目标
+绝不轻言放弃
+没有人能被打败，除非接受失败的事实
+一个人只有相信自己能得到某物，都会准备接受它。
+每一种逆境，都隐藏着相同的优势。 
+
+三、信心
+信心，爱和性的力量最为强大。
+不断反复并确定地对潜意识发号施令，是自发培养信心的唯一方法。 
+抑制、排队消极负面情感，是一个人最基本的态度。 
+一切都与心态有关，最后的胜利，属于那个相信自己能行的我。
+杰出人物，他们每个人的背后几乎都有一个女性的爱在支持着他。
+
+四、自我暗示
+你，只有你，来决定你为之奋斗的回报（即多钱意识），是否值得你为之辛苦地付出。
+
+五、专业知识
+知识只是潜在的力量，只有与明确的行动计划和目标相结合，知识才能成为力量。
+人们只珍惜那些需要付费的东西。
+那些安排业余时间在家学习的人，尤其是那些靠薪水为生的人，很少会满足于久居低层的现状，他们的行动为自己开 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/%E5%A5%BD%E5%A5%BD%E5%AD%A6%E4%B9%A0/" title="好好学习">好好学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T10:07:34.000Z" title="发表于 2022-09-17 18:07:34">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%8A%B1%E5%BF%97/">励志</a></span></div><div class="content">一、知识管理与认识优势知识与知识是不一样的，有些知识比其他知识的威力更大，少数的知识能够给我们带来关键的影响，这就是临界知识。
+在海量信息即时获取时代，我们拼什么？
+一阶段，知识数量构建认识优势
+二阶段，知识获取速度构建认知优势
+三阶段，知识深度构建认知优势，认识的深度
+
+如何提升认知深度？为什么大多数人的学习层次上不去？
+重要的是：认识效率
+对于大多数人而言，我们知道的，只是我们以为自己知道了
+如果我们的学习是在了解问题本质，了解解决方案的底层规律，能够让我们认清楚问题表象背后的实质，那我们就是在提升认知效率。
+
+到底哪些知识值得学？
+斜杠&#x3D;兼职？ 你更多的只是经历了一下而已，认知深度资并没有明显增加。
+斜杠是结果，不是原因。斜杠是提升认知深度的结果，而不是追求多元的结果。
+一开始就能带来直接利益和诱惑的事情，很可能要拿未来的机会作代价。
+一个人，活成一支队伍。
+无用之用，方为大用。
+执行能力、专业能力和结构能力都应该学。
+
+二、掌握临界知识的底层思维与方法对于学习临界知识而言，首先要掌握的底层思维与方法，其次才是具体的知识和技能
+跳出“低水平勤奋陷阱”
+读书，自然是最基本 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/Block-block%E6%9C%AC%E8%B4%A8/" title="Block - __block本质">Block - __block本质</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T09:54:02.000Z" title="发表于 2022-09-17 17:54:02">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Category/">Category</a></span></div><div class="content">__block修饰符
 __block可以用于解决block内部无法修改auto变量值的问题
 __block不能修饰全局变量、静态变量（static）
 编译器会将__block变量包装成一个对象
@@ -185,6 +256,7 @@ key的常见用法123456789101112131415static void *MyKey = &amp;MyKey;objc_setA
 
 
 objc4源码解读
+
 objc-msg-arm64.s，汇编级别的源码
 objc_msgSend，消息发送汇编源码
 
@@ -199,7 +271,8 @@ objc_msgSend(cls, SEL_initialize)
 
 
 
-源码分析，objc-ru ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/Category-load/" title="Category - load">Category - load</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T09:35:26.000Z" title="发表于 2022-09-17 17:35:26">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Category/">Category</a></span></div><div class="content">+load
+
+源码分析，objc- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/Category-load/" title="Category - load">Category - load</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T09:35:26.000Z" title="发表于 2022-09-17 17:35:26">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/Category/">Category</a></span></div><div class="content">+load
 +load方法会在runtime加载类、分类时调用
 每个类、分类的+load，在程序运行过程中只调用一次
 调用顺序
@@ -216,6 +289,7 @@ objc_msgSend(cls, SEL_initialize)
 
 
 objc4源码解读：objc-os.mm
+
 _objc_init
 load_images
 prepare_load_methods
@@ -230,9 +304,11 @@ call_category_loads
 
 
 
+
 源码分析
-_objc_init
-123456789101112131415161718192021/************************************************************************ _objc_init* Boots ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/Category-%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84/" title="Category - 底层结构">Category - 底层结构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T09:31:45.000Z" title="发表于 2022-09-17 17:31:45">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a></span></div><div class="content">底层结构12345678struct _category_t &#123;    const char *name;    struct _class_t *cls;    const struct _method_list_t *instance_methods;    const struct _method_list_t *class_methods;    const struct _protocol_list_t *protocols;    const struct _prop_list_t *properties;&#125;;
+ _objc_init
+
+123456789101112131415161718192021/************************************************************************ _objc_init* B ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/Category-%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84/" title="Category - 底层结构">Category - 底层结构</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T09:31:45.000Z" title="发表于 2022-09-17 17:31:45">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a></span></div><div class="content">底层结构12345678struct _category_t &#123;    const char *name;    struct _class_t *cls;    const struct _method_list_t *instance_methods;    const struct _method_list_t *class_methods;    const struct _protocol_list_t *protocols;    const struct _prop_list_t *properties;&#125;;
 
 加载处理过程
 通过Runtime某个类的所有Category数据
@@ -254,33 +330,14 @@ remeth ...</div></div></div><div class="recent-post-item"><div class="recent-pos
 KVO的全称是Key-Value Observing，俗称“键值监听”，可以用于监听某个对象属性值的改变
 
 添加KVO方法
-1234567891011121314151617self.person = [[Person alloc] init];// 给person对象添加KVO监听NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;[self.person addObserver:self forKeyPath:@&quot;age&quot; options:options context:@&quot;123&quot;];// observeValueForKeyPath:ofObject:change:context:// 当监听对象的属性值发生改变时，就会调用- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDict ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/09/17/OC%E8%AF%AD%E6%B3%95/" title="OC语法">OC语法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-17T08:58:57.000Z" title="发表于 2022-09-17 16:58:57">2022-09-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/iOS/">iOS</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a></span></div><div class="content">Objective-c语法Objective-C的本质
-平时编写的OC代码，底层实现其实都是C&#x2F;C++代码
-
-1Objective-C -&gt; C/C++ -&gt; 汇编语言 -&gt; 机器语言
-
-
-OC的面向对象都是基于C&#x2F;C++的数据结构实现的，即 结构体
-
-NSObject的底层实现123456789@interface NSObject &#123;    Class isa;&#125;@end底层结构体形式：struct NSObject_IMPL &#123;    Class isa;&#125;
-
-
-创建一个实例对象，至少需要多少内存？
-
-至少需要8个字节12#import &lt;objc/runtime.h&gt;class_getInstanceSize([NSObjcet class]);
-
-
-创建一个实例对象，实际上分配了多少内存？
-
-实际分配了16个字节   
-底层是Buckets size, 16, 32, 48, 64…. 都是16的位数12#import &lt;objc/runtime.h&gt;malloc_size( ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ivan_华之曦</div><div class="author-info__description">一个相信光的理想主义者</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huazhixi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huazhixi" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huazhi_xi@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Block-block%E6%9C%AC%E8%B4%A8/" title="Block - __block本质">Block - __block本质</a><time datetime="2022-09-17T09:54:02.000Z" title="发表于 2022-09-17 17:54:02">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Block-%E6%9C%AC%E8%B4%A8%E8%AE%A4%E8%AF%86%EF%BC%8C%E5%8F%98%E9%87%8F%E6%8D%95%E8%8E%B7%EF%BC%8C%E7%B1%BB%E5%9E%8B/" title="Block - 本质认识，变量捕获，类型">Block - 本质认识，变量捕获，类型</a><time datetime="2022-09-17T09:45:57.000Z" title="发表于 2022-09-17 17:45:57">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Category-%E5%85%B3%E8%81%94%E5%AF%B9%E8%B1%A1/" title="Category - 关联对象">Category - 关联对象</a><time datetime="2022-09-17T09:40:41.000Z" title="发表于 2022-09-17 17:40:41">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Category-initialize/" title="Category - initialize">Category - initialize</a><time datetime="2022-09-17T09:38:43.000Z" title="发表于 2022-09-17 17:38:43">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Category-load/" title="Category - load">Category - load</a><time datetime="2022-09-17T09:35:26.000Z" title="发表于 2022-09-17 17:35:26">2022-09-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+1234567891011121314151617self.person = [[Person alloc] init];// 给person对象添加KVO监听NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld;[self.person addObserver:self forKeyPath:@&quot;age&quot; options:options context:@&quot;123&quot;];// observeValueForKeyPath:ofObject:change:context:// 当监听对象的属性值发生改变时，就会调用- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDict ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ivan_华之曦</div><div class="author-info__description">一个相信光的理想主义者</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huazhixi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huazhixi" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huazhi_xi@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/%E4%BD%B3%E8%83%BD%E7%9B%B8%E6%9C%BA/" title="佳能相机">佳能相机</a><time datetime="2022-09-17T10:25:51.000Z" title="发表于 2022-09-17 18:25:51">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/%E6%80%9D%E8%80%83%E8%87%B4%E5%AF%8C/" title="思考致富">思考致富</a><time datetime="2022-09-17T10:10:01.000Z" title="发表于 2022-09-17 18:10:01">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/%E5%A5%BD%E5%A5%BD%E5%AD%A6%E4%B9%A0/" title="好好学习">好好学习</a><time datetime="2022-09-17T10:07:34.000Z" title="发表于 2022-09-17 18:07:34">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Block-block%E6%9C%AC%E8%B4%A8/" title="Block - __block本质">Block - __block本质</a><time datetime="2022-09-17T09:54:02.000Z" title="发表于 2022-09-17 17:54:02">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Block-%E6%9C%AC%E8%B4%A8%E8%AE%A4%E8%AF%86%EF%BC%8C%E5%8F%98%E9%87%8F%E6%8D%95%E8%8E%B7%EF%BC%8C%E7%B1%BB%E5%9E%8B/" title="Block - 本质认识，变量捕获，类型">Block - 本质认识，变量捕获，类型</a><time datetime="2022-09-17T09:45:57.000Z" title="发表于 2022-09-17 17:45:57">2022-09-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/iOS/"><span class="card-category-list-name">iOS</span><span class="card-category-list-count">8</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Block/" style="font-size: 1.1em; color: #999">Block</a> <a href="/tags/Category/" style="font-size: 1.3em; color: #99a1ac">Category</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 1.5em; color: #99a9bf">底层原理</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">8</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">8</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">7.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-09-17T10:00:07.480Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2022 By ivan_华之曦</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi，欢迎来到 ivan's Blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function subtitleType () {
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/iOS/"><span class="card-category-list-name">iOS</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%9B%B8%E6%9C%BA/"><span class="card-category-list-name">相机</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">读书笔记</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Block/" style="font-size: 1.1em; color: #999">Block</a> <a href="/tags/Camera/" style="font-size: 1.1em; color: #999">Camera</a> <a href="/tags/Category/" style="font-size: 1.37em; color: #99a4b2">Category</a> <a href="/tags/%E5%8A%B1%E5%BF%97/" style="font-size: 1.23em; color: #999ea6">励志</a> <a href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" style="font-size: 1.5em; color: #99a9bf">底层原理</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">11</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">11</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">15.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-09-17T10:52:30.807Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2022 By ivan_华之曦</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi，欢迎来到 ivan's Blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function subtitleType () {
   if (true) { 
     window.typed = new Typed("#subtitle", {
       strings: ["男儿不展风云志，空负天生八尺躯"],
