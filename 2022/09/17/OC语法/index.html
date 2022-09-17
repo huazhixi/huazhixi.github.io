@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>OC语法 | ivan's Blog</title><meta name="keywords" content="底层原理"><meta name="author" content="ivan_华之曦"><meta name="copyright" content="ivan_华之曦"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Objective-c语法Objective-C的本质 平时编写的OC代码，底层实现其实都是C&#x2F;C++代码  1Objective-C -&gt; C&#x2F;C++ -&gt; 汇编语言 -&gt; 机器语言   OC的面向对象都是基于C&#x2F;C++的数据结构实现的，即 结构体  NSObject的底层实现123456789@interface NSObject &amp;#123;    Cl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC语法">
+<meta property="og:url" content="http://www.hxtec.top/2022/09/17/OC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="ivan&#39;s Blog">
+<meta property="og:description" content="Objective-c语法Objective-C的本质 平时编写的OC代码，底层实现其实都是C&#x2F;C++代码  1Objective-C -&gt; C&#x2F;C++ -&gt; 汇编语言 -&gt; 机器语言   OC的面向对象都是基于C&#x2F;C++的数据结构实现的，即 结构体  NSObject的底层实现123456789@interface NSObject &amp;#123;    Cl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.hxtec.top/img/archive_top_img.jpeg">
+<meta property="article:published_time" content="2022-09-17T08:58:57.000Z">
+<meta property="article:modified_time" content="2022-09-17T09:13:11.760Z">
+<meta property="article:author" content="ivan_华之曦">
+<meta property="article:tag" content="底层原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.hxtec.top/img/archive_top_img.jpeg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.hxtec.top/2022/09/17/OC%E8%AF%AD%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OC语法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-17 17:13:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="ivan's Blog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/archive_top_img.jpeg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ivan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OC语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-17T08:58:57.000Z" title="发表于 2022-09-17 16:58:57">2022-09-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-17T09:13:11.760Z" title="更新于 2022-09-17 17:13:11">2022-09-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/iOS/">iOS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OC语法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Objective-c语法"><a href="#Objective-c语法" class="headerlink" title="Objective-c语法"></a>Objective-c语法</h1><h4 id="Objective-C的本质"><a href="#Objective-C的本质" class="headerlink" title="Objective-C的本质"></a>Objective-C的本质</h4><ul>
+<li>平时编写的OC代码，底层实现其实都是C&#x2F;C++代码</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Objective-C -&gt; C/C++ -&gt; 汇编语言 -&gt; 机器语言</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>OC的面向对象都是基于C&#x2F;C++的数据结构实现的，即 <strong>结构体</strong></li>
+</ul>
+<h4 id="NSObject的底层实现"><a href="#NSObject的底层实现" class="headerlink" title="NSObject的底层实现"></a>NSObject的底层实现</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface NSObject &#123;</span><br><span class="line">    Class isa;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">底层结构体形式：</span><br><span class="line">struct NSObject_IMPL &#123;</span><br><span class="line">    Class isa;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>创建一个实例对象，至少需要多少内存？</p>
+<ul>
+<li>至少需要8个字节<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">class_getInstanceSize([NSObjcet class]);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>创建一个实例对象，实际上分配了多少内存？</p>
+<ul>
+<li>实际分配了16个字节   </li>
+<li>底层是Buckets size, 16, 32, 48, 64…. 都是16的位数<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">malloc_size((__bridge const void *)obj)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="OC对象的分类"><a href="#OC对象的分类" class="headerlink" title="OC对象的分类"></a>OC对象的分类</h4><ul>
+<li>instance对象（实例对象）<ul>
+<li>alloc出来的对象，在内存中存储的信息包括：<ol>
+<li>isa指针</li>
+<li>其他成员变量</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>class对象（类对象）<ul>
+<li>每个类在内存中有且只有一个class对象</li>
+<li>class对象在内存中存储的信息主要包括：<ol>
+<li>isa指针</li>
+<li>superClass指针</li>
+<li>类的属性信息(property)、类的对象方法信息(instance method)</li>
+<li>类的协议信息(protocol)、类的成员变量信息(ivar)</li>
+<li>……</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>meta-class对象（元类对象）<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Class objectMetaClass = objc_getClass([NSObject class]);//Runtime API</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h6><ul>
+<li><p>objectMetaClass是NSObject的meta-class对象(元类对象)</p>
+</li>
+<li><p>每个类在内存中只有一个meta-class对象</p>
+</li>
+<li><p>meta-class对象和class对象的内存结构是一样的，但是用途不一样</p>
+<ul>
+<li>主要包括：<ol>
+<li>isa指针</li>
+<li>superclass指针</li>
+<li>类的方法信息(class method)</li>
+<li>……</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>查看Class是否为meta-class，方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bool result = class_isMetaClass([NSObjce class]);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="isa指针"><a href="#isa指针" class="headerlink" title="isa指针"></a>isa指针</h5><p><img src="http://rfshxohrg.hn-bkt.clouddn.com/WX20220730-105146.png" alt="image"></p>
+<ul>
+<li>instance的&#x3D;&#x3D;isa&#x3D;&#x3D;指向class<ul>
+<li>当调用&#x3D;&#x3D;对象方法&#x3D;&#x3D;时，通过instance的&#x3D;&#x3D;isa&#x3D;&#x3D;找到class，最后找到&#x3D;&#x3D;对象方法&#x3D;&#x3D;的实现进行调用</li>
+</ul>
+</li>
+<li>class的&#x3D;&#x3D;isa&#x3D;&#x3D;指向meta-class<ul>
+<li>当调用&#x3D;&#x3D;类方法&#x3D;&#x3D;时，通过class的&#x3D;&#x3D;isa&#x3D;&#x3D;找到meta-class，最后找到&#x3D;&#x3D;类方法&#x3D;&#x3D;的实现进行调用<br><img src="http://rfshxohrg.hn-bkt.clouddn.com/WX20220730-112038.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+<p><strong>&#x3D;&#x3D;note:&#x3D;&#x3D;</strong> 从64位开始，isa需要进行一次位运算，才能计算出真实地址</p>
+<h5 id="class对象的superclass指针"><a href="#class对象的superclass指针" class="headerlink" title="class对象的superclass指针"></a>class对象的superclass指针</h5><p><img src="http://rfshxohrg.hn-bkt.clouddn.com/WX20220730-110416.png" alt="image"></p>
+<p><strong>&#x3D;&#x3D;note:&#x3D;&#x3D;</strong> 当student的instance对象要调用Person的对象方法时，会先通过&#x3D;&#x3D;isa&#x3D;&#x3D;找到Student的class，然后通过&#x3D;&#x3D;superclass&#x3D;&#x3D;找到Person的class，最后找到对象方法的实现进行调用</p>
+<h5 id="meta-class对象的superclass指针"><a href="#meta-class对象的superclass指针" class="headerlink" title="meta-class对象的superclass指针"></a>meta-class对象的superclass指针</h5><p><img src="http://rfshxohrg.hn-bkt.clouddn.com/WX20220730-111359.png" alt="image"></p>
+<p><strong>&#x3D;&#x3D;note:&#x3D;&#x3D;</strong> 当Student的class要调用Person的类方法时，会先通过&#x3D;&#x3D;isa&#x3D;&#x3D;找到Student的meta-class，然后通过&#x3D;&#x3D;superclass&#x3D;&#x3D;找到Person的meta-class，最后找到类方法的实现进行调用</p>
+<h4 id="isa、superclass总结"><a href="#isa、superclass总结" class="headerlink" title="isa、superclass总结"></a>isa、superclass总结</h4><p><img src="http://rfshxohrg.hn-bkt.clouddn.com/%E5%9B%BE%E7%89%871.png" alt="image"></p>
+<ol>
+<li>instance的isa指向class</li>
+<li>class的isa指向meta-class</li>
+<li>meta-class的isa指向基类的meta-class</li>
+<li>class的superclass指向父类的class<br>如果没有父类，superclass指针为nil</li>
+<li>meta-class的superclass指向父类的meta-class<br>基类的meta-class的superclass指向基类的class</li>
+<li>instance调用对象方法的轨迹<br>isa找到class，方法不存在，就通过superclass找父类</li>
+<li>class调用类方法的轨迹<br>isa找meta-class，方法不存在，就通过superclass找父类</li>
+</ol>
+<h5 id="64位isa指针"><a href="#64位isa指针" class="headerlink" title="64位isa指针"></a>64位isa指针</h5><ul>
+<li>从64bit开始，isa需要进行一次位运算(isa地址 &amp; ISA_MASK)，才能计算出真实地址<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># if __arm64__</span><br><span class="line">#   define ISA_MASK        0x0000000ffffffff8ULL</span><br><span class="line"># elif __x86_64__</span><br><span class="line">#   define ISA_MASK        0x00007ffffffffff8ULL</span><br><span class="line"># endif</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="struct-objc-class的结构"><a href="#struct-objc-class的结构" class="headerlink" title="struct objc_class的结构"></a>struct objc_class的结构</h5><ul>
+<li>class、meta-class对象的本质结构都是struct objc_class<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">struct class_ro_t &#123;</span><br><span class="line">    uint32_t flags;</span><br><span class="line">    uint32_t instanceStart;</span><br><span class="line">    uint32_t instanceSize;  // instance对象占用的内存空间</span><br><span class="line">#ifdef __LP64__</span><br><span class="line">    uint32_t reserved;</span><br><span class="line">#endif</span><br><span class="line">    const uint8_t * ivarLayout;</span><br><span class="line">    const char * name;  // 类名</span><br><span class="line">    method_list_t * baseMethodList;</span><br><span class="line">    protocol_list_t * baseProtocols;</span><br><span class="line">    const ivar_list_t * ivars;  // 成员变量列表</span><br><span class="line">    const uint8_t * weakIvarLayout;</span><br><span class="line">    property_list_t *baseProperties;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">struct class_rw_t &#123;</span><br><span class="line">    uint32_t flags;</span><br><span class="line">    uint32_t version;</span><br><span class="line">    const class_ro_t *ro;</span><br><span class="line">    method_list_t * methods;    // 方法列表</span><br><span class="line">    property_list_t *properties;    // 属性列表</span><br><span class="line">    const protocol_list_t * protocols;  // 协议列表</span><br><span class="line">    Class firstSubclass;</span><br><span class="line">    Class nextSiblingClass;</span><br><span class="line">    char *demangledName;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#define FAST_DATA_MASK          0x00007ffffffffff8UL</span><br><span class="line">struct class_data_bits_t &#123;</span><br><span class="line">    uintptr_t bits;</span><br><span class="line">public:</span><br><span class="line">    class_rw_t* data() &#123;</span><br><span class="line">        return (class_rw_t *)(bits &amp; FAST_DATA_MASK);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/* OC对象 */</span><br><span class="line">struct hx_objc_object &#123;</span><br><span class="line">    void *isa;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/* 类对象 */</span><br><span class="line">struct hx_objc_class : hx_objc_object &#123;</span><br><span class="line">    Class superclass;</span><br><span class="line">    cache_t cache;</span><br><span class="line">    class_data_bits_t bits;</span><br><span class="line">public:</span><br><span class="line">    class_rw_t* data() &#123;</span><br><span class="line">        return bits.data();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    hx_objc_class* metaClass() &#123;</span><br><span class="line">        return (hx_objc_class *)((long long)isa &amp; ISA_MASK);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>用如下方法进行断点查看，内部结构内容<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//实例对象</span><br><span class="line">hx_objc_class *studentClass = (__bridge hx_objc_class *)([Student class]);</span><br><span class="line">hx_objc_class *personClass = (__bridge hx_objc_class *)([Person class]);</span><br><span class="line"></span><br><span class="line">//类对象</span><br><span class="line">class_rw_t *studentClassData = studentClass-&gt;data();</span><br><span class="line">class_rw_t *personClassData = personClass-&gt;data();</span><br><span class="line"></span><br><span class="line">//元类对象</span><br><span class="line">class_rw_t *studentMetaClassData = studentClass-&gt;metaClass()-&gt;data();</span><br><span class="line">class_rw_t *personMetaClassData = personClass-&gt;metaClass()-&gt;data();</span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://www.hxtec.top">ivan_华之曦</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.hxtec.top/2022/09/17/OC%E8%AF%AD%E6%B3%95/">http://www.hxtec.top/2022/09/17/OC语法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.hxtec.top" target="_blank">ivan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">底层原理</a></div><div class="post_share"><div class="social-share" data-image="/img/archive_top_img.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2022/09/17/KVO-KVC/"><img class="prev-cover" src="/img/archive_top_img.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">KVO &amp; KVC</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/17/KVO-KVC/" title="KVO &amp; KVC"><img class="cover" src="/img/archive_top_img.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">KVO &amp; KVC</div></div></a></div><div><a href="/2022/09/17/Category-%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84/" title="Category - 底层结构"><img class="cover" src="/img/archive_top_img.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Category - 底层结构</div></div></a></div><div><a href="/2022/09/17/Category-load/" title="Category - load"><img class="cover" src="/img/archive_top_img.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Category - load</div></div></a></div><div><a href="/2022/09/17/Category-initialize/" title="Category - initialize"><img class="cover" src="/img/archive_top_img.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Category - initialize</div></div></a></div><div><a href="/2022/09/17/Category-%E5%85%B3%E8%81%94%E5%AF%B9%E8%B1%A1/" title="Category - 关联对象"><img class="cover" src="/img/archive_top_img.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Category - 关联对象</div></div></a></div><div><a href="/2022/09/17/Block-%E6%9C%AC%E8%B4%A8%E8%AE%A4%E8%AF%86%EF%BC%8C%E5%8F%98%E9%87%8F%E6%8D%95%E8%8E%B7%EF%BC%8C%E7%B1%BB%E5%9E%8B/" title="Block - 本质认识，变量捕获，类型"><img class="cover" src="/img/archive_top_img.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-17</div><div class="title">Block - 本质认识，变量捕获，类型</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ivan_华之曦</div><div class="author-info__description">一个相信光的理想主义者</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huazhixi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huazhixi" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huazhi_xi@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Objective-c%E8%AF%AD%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">Objective-c语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Objective-C%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Objective-C的本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NSObject%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">NSObject的底层实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OC%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">OC对象的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93%EF%BC%9A"><span class="toc-number">1.0.0.3.0.1.</span> <span class="toc-text">小结：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#isa%E6%8C%87%E9%92%88"><span class="toc-number">1.0.0.3.1.</span> <span class="toc-text">isa指针</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#class%E5%AF%B9%E8%B1%A1%E7%9A%84superclass%E6%8C%87%E9%92%88"><span class="toc-number">1.0.0.3.2.</span> <span class="toc-text">class对象的superclass指针</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#meta-class%E5%AF%B9%E8%B1%A1%E7%9A%84superclass%E6%8C%87%E9%92%88"><span class="toc-number">1.0.0.3.3.</span> <span class="toc-text">meta-class对象的superclass指针</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#isa%E3%80%81superclass%E6%80%BB%E7%BB%93"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">isa、superclass总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#64%E4%BD%8Disa%E6%8C%87%E9%92%88"><span class="toc-number">1.0.0.4.1.</span> <span class="toc-text">64位isa指针</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#struct-objc-class%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">1.0.0.4.2.</span> <span class="toc-text">struct objc_class的结构</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Block-block%E6%9C%AC%E8%B4%A8/" title="Block - __block本质">Block - __block本质</a><time datetime="2022-09-17T09:54:02.000Z" title="发表于 2022-09-17 17:54:02">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Block-%E6%9C%AC%E8%B4%A8%E8%AE%A4%E8%AF%86%EF%BC%8C%E5%8F%98%E9%87%8F%E6%8D%95%E8%8E%B7%EF%BC%8C%E7%B1%BB%E5%9E%8B/" title="Block - 本质认识，变量捕获，类型">Block - 本质认识，变量捕获，类型</a><time datetime="2022-09-17T09:45:57.000Z" title="发表于 2022-09-17 17:45:57">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Category-%E5%85%B3%E8%81%94%E5%AF%B9%E8%B1%A1/" title="Category - 关联对象">Category - 关联对象</a><time datetime="2022-09-17T09:40:41.000Z" title="发表于 2022-09-17 17:40:41">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Category-initialize/" title="Category - initialize">Category - initialize</a><time datetime="2022-09-17T09:38:43.000Z" title="发表于 2022-09-17 17:38:43">2022-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/09/17/Category-load/" title="Category - load">Category - load</a><time datetime="2022-09-17T09:35:26.000Z" title="发表于 2022-09-17 17:35:26">2022-09-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2022 By ivan_华之曦</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi，欢迎来到 ivan's Blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
