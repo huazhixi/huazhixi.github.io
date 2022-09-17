@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>http://www.hxtec.top/about/index.html</loc>
+    
+    <lastmod>2022-09-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://www.hxtec.top/tags/index.html</loc>
     
     <lastmod>2022-09-17</lastmod>
@@ -30,15 +39,6 @@
   
   <url>
     <loc>http://www.hxtec.top/archives/index.html</loc>
-    
-    <lastmod>2022-09-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://www.hxtec.top/about/index.html</loc>
     
     <lastmod>2022-09-17</lastmod>
     
@@ -70,5 +70,12 @@
   </url>
   
 
+  
+  <url>
+    <loc>http://www.hxtec.top/categories/iOS/</loc>
+    <lastmod>2022-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 </urlset>
