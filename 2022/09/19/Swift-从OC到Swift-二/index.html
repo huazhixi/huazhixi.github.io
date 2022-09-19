@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Swift-从OC到Swift 二 | ivan's Blog</title><meta name="keywords" content="Swift,语法"><meta name="author" content="ivan_华之曦"><meta name="copyright" content="ivan_华之曦"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="KVC&#x2F;KVO Swift 支持KVC&#x2F;KVO的条件 属性所在的类、监听器最终继承自 NSObject 用 @objc dynamic 修饰对应的属性    KVO1234567891011121314151617181920212223242526272829303132&#x2F;&#x2F; 监听器class Observer: NSObject &amp;#123;    override fun">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift-从OC到Swift 二">
+<meta property="og:url" content="http://www.hxtec.top/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%BA%8C/index.html">
+<meta property="og:site_name" content="ivan&#39;s Blog">
+<meta property="og:description" content="KVC&#x2F;KVO Swift 支持KVC&#x2F;KVO的条件 属性所在的类、监听器最终继承自 NSObject 用 @objc dynamic 修饰对应的属性    KVO1234567891011121314151617181920212223242526272829303132&#x2F;&#x2F; 监听器class Observer: NSObject &amp;#123;    override fun">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-01-10%2F5e17ef38943f4.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666152189&t=4bec704059b14296c13b00afb96f9fdf">
+<meta property="article:published_time" content="2022-09-19T03:05:10.000Z">
+<meta property="article:modified_time" content="2022-09-19T04:03:35.333Z">
+<meta property="article:author" content="ivan_华之曦">
+<meta property="article:tag" content="Swift">
+<meta property="article:tag" content="语法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-01-10%2F5e17ef38943f4.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666152189&t=4bec704059b14296c13b00afb96f9fdf"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.hxtec.top/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%BA%8C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Swift-从OC到Swift 二',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-19 12:03:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="ivan's Blog" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-01-10%2F5e17ef38943f4.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152189&amp;t=4bec704059b14296c13b00afb96f9fdf')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">ivan's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Swift-从OC到Swift 二</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-19T03:05:10.000Z" title="发表于 2022-09-19 11:05:10">2022-09-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-19T04:03:35.333Z" title="更新于 2022-09-19 12:03:35">2022-09-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/iOS/">iOS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Swift-从OC到Swift 二"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="KVC-x2F-KVO"><a href="#KVC-x2F-KVO" class="headerlink" title="KVC&#x2F;KVO"></a>KVC&#x2F;KVO</h2><ul>
+<li>Swift 支持KVC&#x2F;KVO的条件<ul>
+<li>属性所在的类、监听器最终继承自 NSObject</li>
+<li>用 @objc dynamic 修饰对应的属性</li>
+</ul>
+</li>
+</ul>
+<h3 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// 监听器</span><br><span class="line">class Observer: NSObject &#123;</span><br><span class="line">    override func observeValue(forKeyPath keyPath: String?,</span><br><span class="line">                                of object: Any?,</span><br><span class="line">                                change: [NSKeyValueChangeKey : Any]?,</span><br><span class="line">                                context: UnsafeMutableRawPointer?) &#123;</span><br><span class="line">        print(&quot;observeValue&quot;, change?[.newKey] as Any) </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 类</span><br><span class="line">class Person: NSObject &#123;</span><br><span class="line">    @objc dynamic var age: Int = 0</span><br><span class="line">    var observer: Observer = Observer()</span><br><span class="line">    override init() &#123;</span><br><span class="line">        super.init()</span><br><span class="line">        self.addObserver(observer,</span><br><span class="line">                        forKeyPath: &quot;age&quot;,</span><br><span class="line">                        options: .new,</span><br><span class="line">                        context: nil) </span><br><span class="line">    &#125;</span><br><span class="line">    deinit &#123;</span><br><span class="line">        self.removeObserver(observer,</span><br><span class="line">                            forKeyPath: &quot;age&quot;) </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = Person()</span><br><span class="line">// observeValue Optional(20)</span><br><span class="line">p.age = 20</span><br><span class="line">// observeValue Optional(25)</span><br><span class="line">p.setValue(25, forKey: &quot;age&quot;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="block方式的KVO"><a href="#block方式的KVO" class="headerlink" title="block方式的KVO"></a>block方式的KVO</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Person: NSObject &#123;</span><br><span class="line">    @objc dynamic var age: Int = 0</span><br><span class="line">    var observation: NSKeyValueObservation?</span><br><span class="line">    override init() &#123;</span><br><span class="line">        super.init()</span><br><span class="line">        observation = observe(\Person.age, options: .new) &#123;</span><br><span class="line">            (person, change) in</span><br><span class="line">            print(change.newValue as Any) </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = Person()</span><br><span class="line">// Optional(20)</span><br><span class="line">p.age = 20</span><br><span class="line">// Optional(25)</span><br><span class="line">p.setValue(25, forKey: &quot;age&quot;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="关联对象（Associated-Object）"><a href="#关联对象（Associated-Object）" class="headerlink" title="关联对象（Associated Object）"></a>关联对象（Associated Object）</h2><ul>
+<li>在Swift中，class依然可以使用关联对象<ul>
+<li>默认情况，extension不可以增加存储属性</li>
+<li>借助关联对象，可以实现类似extension为class增加存储属性的效果</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;&#125;</span><br><span class="line"></span><br><span class="line">extension Person &#123;</span><br><span class="line">    private static var AGE_KEY: Void?</span><br><span class="line">    var age: Int &#123;</span><br><span class="line">        get &#123;(objc_getAssociatedObject(self, &amp;Self.AGE_KEY) as? Int) ?? 0 &#125;</span><br><span class="line">        set &#123;</span><br><span class="line">            objc_setAssociatedObject(self, </span><br><span class="line">                                    &amp;Self.AGE_KEY,</span><br><span class="line">                                    newValue,</span><br><span class="line">                                    .OBJC_ASSOCIATION_ASSIGN) </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p = Person()</span><br><span class="line">print(p.age) // 0</span><br><span class="line">p.age = 10</span><br><span class="line">print(p.age) // 10</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源名管理"><a href="#资源名管理" class="headerlink" title="资源名管理"></a>资源名管理</h2><ul>
+<li>参考Android的资源名管理方式</li>
+</ul>
+<blockquote>
+<p>改善前</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let img = UIImage(named: &quot;logo&quot;)</span><br><span class="line"></span><br><span class="line">let btn = UIButton(type: .custom)</span><br><span class="line">btn.setTitle(&quot;添加&quot;, for: .normal)</span><br><span class="line"></span><br><span class="line">performSegue(withIdentifier: &quot;login_main&quot;, sender: self)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>改善后</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">//枚举封装</span><br><span class="line">enum R &#123;</span><br><span class="line">    enum string: String &#123;</span><br><span class="line">        case add = &quot;添加&quot; </span><br><span class="line">    &#125;</span><br><span class="line">    enum image: String &#123;</span><br><span class="line">        case logo</span><br><span class="line">    &#125;</span><br><span class="line">    enum segue: String &#123;</span><br><span class="line">        case login_main</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 扩展</span><br><span class="line">extension UIImage &#123;</span><br><span class="line">    convenience init?(_ name: R.image) &#123;</span><br><span class="line">        self.init(named: name.rawValue) </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension UIButton &#123;</span><br><span class="line">    func setTitle(_ title: R.string, for state: UIControl.State) &#123;</span><br><span class="line">        setTitle(title.rawValue, for: state)</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">extension UIViewController &#123;</span><br><span class="line">    func performSegue(withIdentifier identifier: R.segue, sender: Any?) &#123;</span><br><span class="line">        performSegue(withIdentifier: identifier.rawValue, sender: sender)</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用</span><br><span class="line">let img = UIImage(R.image.logo)</span><br><span class="line"></span><br><span class="line">let btn = UIButton(type: .custom)</span><br><span class="line">btn.setTitle(R.string.add, for: .normal)</span><br><span class="line"></span><br><span class="line">performSegue(withIdentifier: R.segue.login_main, sender: self)</span><br></pre></td></tr></table></figure>
+
+<h3 id="资源名管理的其他思路"><a href="#资源名管理的其他思路" class="headerlink" title="资源名管理的其他思路"></a>资源名管理的其他思路</h3><blockquote>
+<p>优化前</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let img = UIImage(named: &quot;logo&quot;)</span><br><span class="line"></span><br><span class="line">let font = UIFont(name: &quot;Arial&quot;, size: 14)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>优化后</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//枚举进行封装</span><br><span class="line">enum R &#123;</span><br><span class="line">    enum image &#123;</span><br><span class="line">        static var logo = UIImage(named: &quot;logo&quot;) </span><br><span class="line">    &#125;</span><br><span class="line">    enum font &#123;</span><br><span class="line">        static func arial(_ size: CGFloat) -&gt; UIFont? &#123;</span><br><span class="line">            UIFont(name: &quot;Arial&quot;, size: size)</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let img = R.image.logo</span><br><span class="line"></span><br><span class="line">let font = R.font.arial(14)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更多优秀的思路参考<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/mac-cain13/R.swift">https://github.com/mac-cain13/R.swift</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SwiftGen/SwiftGen">https://github.com/SwiftGen/SwiftGen</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="多线程开发-异步"><a href="#多线程开发-异步" class="headerlink" title="多线程开发 - 异步"></a>多线程开发 - 异步</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public typealias Task = () -&gt; Void</span><br><span class="line"></span><br><span class="line">struct Async &#123;</span><br><span class="line">    //子线程开辟任务</span><br><span class="line">     public static func async(_ task: @escaping Task) &#123;</span><br><span class="line">        _async(task)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //子线程任务完成之后，回到主线程执行任务</span><br><span class="line">    public static func async(_ task: @escaping Task, _ mainTask: @escaping Task) &#123;</span><br><span class="line">        _async(task, mainTask)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    private static func _async(_ task: @escaping Task, </span><br><span class="line">                                _ mainTask: Task? = nil) &#123;</span><br><span class="line">        let item = DispatchWorkItem(block: task)</span><br><span class="line">        DispatchQueue.global().async(execute: item)</span><br><span class="line">        if let main = mainTask &#123;</span><br><span class="line">            item.notify(queue: DispatchQueue.main, execute: main)</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多线程开发-异步延迟"><a href="#多线程开发-异步延迟" class="headerlink" title="多线程开发 - 异步延迟"></a>多线程开发 - 异步延迟</h3><blockquote>
+<p>一般用法</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@discardableResult //忽略返回值</span><br><span class="line">public static func delay(_ seconds: Double, _ block: @escaping Task) -&gt; DispatchWorkItem &#123;</span><br><span class="line">    let item = DispatchWorkItem(block: block)</span><br><span class="line">    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds,</span><br><span class="line">                                execute: item)</span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>封装使用</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@discardableResult</span><br><span class="line">public static func asyncDelay(_ seconds: Double, _ task: @escaping Task) -&gt; DispatchWorkItem &#123;</span><br><span class="line">    return _asyncDelay(seconds, task)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@discardableResult</span><br><span class="line">public static func asyncDelay(_ seconds: Double, _ task: @escaping Task, _ mainTask: @escaping Task) -&gt; DispatchWorkItem &#123;</span><br><span class="line">    return _asyncDelay(seconds, task, mainTask)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static func _asyncDelay(_ seconds: Double,  </span><br><span class="line">                                _ task: @escaping Task, </span><br><span class="line">                                _ mainTask: Task? = nil) -&gt; DispatchWorkItem &#123;</span><br><span class="line">    let item = DispatchWorkItem(block: task)</span><br><span class="line">    DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + seconds,</span><br><span class="line">                                    execute: item)</span><br><span class="line">    if let main = mainTask &#123;</span><br><span class="line">        item.notify(queue: DispatchQueue.main, execute: main)</span><br><span class="line">    &#125;</span><br><span class="line">    return item</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多线程开发-once"><a href="#多线程开发-once" class="headerlink" title="多线程开发 - once"></a>多线程开发 - once</h3><ul>
+<li>dispatch_once在Swift中已被废弃，取而代之 <ul>
+<li>以用类型属性或者全局变量\常量</li>
+<li>默认自带 lazy + dispatch_once 效果<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fileprivate let initTask2: Void = &#123;</span><br><span class="line">    print(&quot;initTask2---------&quot;)</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">class ViewController: UIViewController &#123;</span><br><span class="line">    static let initTask1: Void = &#123;</span><br><span class="line">        print(&quot;initTask1---------&quot;)</span><br><span class="line">    &#125;()</span><br><span class="line">    </span><br><span class="line">    override func viewDidLoad() &#123;</span><br><span class="line">        super.viewDidLoad()</span><br><span class="line">        </span><br><span class="line">        let _ = Self.initTask1</span><br><span class="line">        </span><br><span class="line">        let _ = initTask2</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="多线程开发-加锁"><a href="#多线程开发-加锁" class="headerlink" title="多线程开发 - 加锁"></a>多线程开发 - 加锁</h3><ul>
+<li>gcd信号量<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Cache &#123;</span><br><span class="line">    private static var data = [String: Any]()</span><br><span class="line">    private static var lock = DispatchSemaphore(value: 1)</span><br><span class="line">    static func set(_ key: String, _ value: Any) &#123;</span><br><span class="line">        lock.wait()</span><br><span class="line">        defer &#123; lock.signal() &#125;</span><br><span class="line">        data[key] = value</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Foundation<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//正常加锁</span><br><span class="line">private static var lock = NSLock()</span><br><span class="line">    static func set(_ key: String, _ value: Any) &#123;</span><br><span class="line">        lock.lock()</span><br><span class="line">        defer &#123; lock.unlock() &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 递归锁</span><br><span class="line">private static var lock = NSRecursiveLock()</span><br><span class="line">    static func set(_ key: String, _ value: Any) &#123;</span><br><span class="line">        lock.lock()</span><br><span class="line">        defer &#123; lock.unlock() &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://www.hxtec.top">ivan_华之曦</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.hxtec.top/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%BA%8C/">http://www.hxtec.top/2022/09/19/Swift-从OC到Swift-二/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.hxtec.top" target="_blank">ivan's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Swift/">Swift</a><a class="post-meta__tags" href="/tags/%E8%AF%AD%E6%B3%95/">语法</a></div><div class="post_share"><div class="social-share" data-image="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-01-10%2F5e17ef38943f4.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152189&amp;t=4bec704059b14296c13b00afb96f9fdf" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/09/19/Swift-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"><img class="prev-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-10-28%2F5f99180e8dd5a.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152344&amp;t=d67f147b1a1e749a7f71c11147263fcc" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Swift-函数式编程</div></div></a></div><div class="next-post pull-right"><a href="/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%B8%80/"><img class="next-cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fphoto%2F2010-6-27%2Fenterdesk.com-7C611E1841DFE48E22746AB85D6334A5.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666151859&amp;t=12080fdb9f9ccac85534a5859a593c1c" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Swift-从OC到Swift 一</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/19/Swift-Array%E7%9A%84%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/" title="Swift-Array的常见操作"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2%2F584faea281ceb.jpg%3Fdown&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666151678&t=1e3fcd4f1f5627454bb1962fbc9dab55" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-19</div><div class="title">Swift-Array的常见操作</div></div></a></div><div><a href="/2022/09/19/Swift-String/" title="Swift-String"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1113%2F092119112016%2F1Z921112016-3-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666151583&t=a8cfede6a33bd89994ff9a1a0a225cf0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-19</div><div class="title">Swift-String</div></div></a></div><div><a href="/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%B8%80/" title="Swift-从OC到Swift 一"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fphoto%2F2010-6-27%2Fenterdesk.com-7C611E1841DFE48E22746AB85D6334A5.jpg&refer=http%3A%2F%2Fup.enterdesk.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666151859&t=12080fdb9f9ccac85534a5859a593c1c" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-19</div><div class="title">Swift-从OC到Swift 一</div></div></a></div><div><a href="/2022/09/19/Swift-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Swift-内存管理"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-09-24%2F5d89e009b2ce0.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666151376&t=6961567f2c266ffe8a01828eece1741a" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-19</div><div class="title">Swift-内存管理</div></div></a></div><div><a href="/2022/09/18/Swift-%E5%87%BD%E6%95%B0/" title="Swift-函数"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-05-18%2F5afe82d1d80d9.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666147088&t=112ac83b93749ad053cfab8c757a28db" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-18</div><div class="title">Swift-函数</div></div></a></div><div><a href="/2022/09/19/Swift-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="Swift-函数式编程"><img class="cover" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-10-28%2F5f99180e8dd5a.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666152344&t=d67f147b1a1e749a7f71c11147263fcc" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-19</div><div class="title">Swift-函数式编程</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">ivan_华之曦</div><div class="author-info__description">一个相信光的理想主义者</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huazhixi"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huazhixi" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huazhi_xi@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KVC-x2F-KVO"><span class="toc-number">1.</span> <span class="toc-text">KVC&#x2F;KVO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#KVO"><span class="toc-number">1.1.</span> <span class="toc-text">KVO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#block%E6%96%B9%E5%BC%8F%E7%9A%84KVO"><span class="toc-number">1.2.</span> <span class="toc-text">block方式的KVO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E5%AF%B9%E8%B1%A1%EF%BC%88Associated-Object%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">关联对象（Associated Object）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%90%8D%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">资源名管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%90%8D%E7%AE%A1%E7%90%86%E7%9A%84%E5%85%B6%E4%BB%96%E6%80%9D%E8%B7%AF"><span class="toc-number">3.1.</span> <span class="toc-text">资源名管理的其他思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91-%E5%BC%82%E6%AD%A5"><span class="toc-number">4.</span> <span class="toc-text">多线程开发 - 异步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91-%E5%BC%82%E6%AD%A5%E5%BB%B6%E8%BF%9F"><span class="toc-number">4.1.</span> <span class="toc-text">多线程开发 - 异步延迟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91-once"><span class="toc-number">4.2.</span> <span class="toc-text">多线程开发 - once</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%BC%80%E5%8F%91-%E5%8A%A0%E9%94%81"><span class="toc-number">4.3.</span> <span class="toc-text">多线程开发 - 加锁</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/Swift-%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="Swift-响应式编程"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-08-06%2F5f2bcd0d64e8e.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152548&amp;t=252a6e88e5e08b066a682300737a9d8b" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Swift-响应式编程"/></a><div class="content"><a class="title" href="/2022/09/19/Swift-%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="Swift-响应式编程">Swift-响应式编程</a><time datetime="2022-09-19T03:05:44.000Z" title="发表于 2022-09-19 11:05:44">2022-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/Swift-%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B/" title="Swift-面向协议编程"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fe%2F56a2e3a55112f.jpg%3Fdown&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152561&amp;t=0272185d5e42cc1c8c044a8f17180f6f" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Swift-面向协议编程"/></a><div class="content"><a class="title" href="/2022/09/19/Swift-%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B/" title="Swift-面向协议编程">Swift-面向协议编程</a><time datetime="2022-09-19T03:05:34.000Z" title="发表于 2022-09-19 11:05:34">2022-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/Swift-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="Swift-函数式编程"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-10-28%2F5f99180e8dd5a.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152344&amp;t=d67f147b1a1e749a7f71c11147263fcc" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Swift-函数式编程"/></a><div class="content"><a class="title" href="/2022/09/19/Swift-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" title="Swift-函数式编程">Swift-函数式编程</a><time datetime="2022-09-19T03:05:24.000Z" title="发表于 2022-09-19 11:05:24">2022-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%BA%8C/" title="Swift-从OC到Swift 二"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-01-10%2F5e17ef38943f4.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152189&amp;t=4bec704059b14296c13b00afb96f9fdf" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Swift-从OC到Swift 二"/></a><div class="content"><a class="title" href="/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%BA%8C/" title="Swift-从OC到Swift 二">Swift-从OC到Swift 二</a><time datetime="2022-09-19T03:05:10.000Z" title="发表于 2022-09-19 11:05:10">2022-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%B8%80/" title="Swift-从OC到Swift 一"><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fup.enterdesk.com%2Fphoto%2F2010-6-27%2Fenterdesk.com-7C611E1841DFE48E22746AB85D6334A5.jpg&amp;refer=http%3A%2F%2Fup.enterdesk.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666151859&amp;t=12080fdb9f9ccac85534a5859a593c1c" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Swift-从OC到Swift 一"/></a><div class="content"><a class="title" href="/2022/09/19/Swift-%E4%BB%8EOC%E5%88%B0Swift-%E4%B8%80/" title="Swift-从OC到Swift 一">Swift-从OC到Swift 一</a><time datetime="2022-09-19T03:04:58.000Z" title="发表于 2022-09-19 11:04:58">2022-09-19</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2020-01-10%2F5e17ef38943f4.jpg&amp;refer=http%3A%2F%2Fpic1.win4000.com&amp;app=2002&amp;size=f9999,10000&amp;q=a80&amp;n=0&amp;g=0n&amp;fmt=auto?sec=1666152189&amp;t=4bec704059b14296c13b00afb96f9fdf')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2022 By ivan_华之曦</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi，欢迎来到 ivan's Blog！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '',
+      clientSecret: '',
+      repo: '',
+      owner: '',
+      admin: [''],
+      id: '48c7fcd9125a4bc2e28ba90977b02e64',
+      updateCountCallback: commentCount
+    },))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
