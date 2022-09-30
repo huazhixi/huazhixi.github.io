@@ -1,3 +1,4 @@
+http://www.hxtec.top/about/index.html
 http://www.hxtec.top/2016/05/11/iOS%E5%BA%94%E7%94%A8%E4%B9%8B-Ping-%E6%94%AF%E4%BB%98%E9%9B%86%E6%88%90/
 http://www.hxtec.top/2016/05/23/iOS%E5%BA%94%E7%94%A8%E4%B9%8B%E6%9E%81%E5%85%89%E6%8E%A8%E9%80%81%E5%BC%80%E5%8F%91%E8%AF%81%E4%B9%A6%E5%92%8C%E7%94%9F%E4%BA%A7%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90/
 http://www.hxtec.top/2016/05/25/iOS%E5%BA%94%E7%94%A8%E4%B9%8B%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98%E9%9B%86%E6%88%90/
@@ -54,7 +55,6 @@ http://www.hxtec.top/2022/09/17/%E5%A5%BD%E5%A5%BD%E5%AD%A6%E4%B9%A0/
 http://www.hxtec.top/categories/index.html
 http://www.hxtec.top/archives/index.html
 http://www.hxtec.top/tags/index.html
-http://www.hxtec.top/about/index.html
 http://www.hxtec.top/
 http://www.hxtec.top/tags/Objective-C/
 http://www.hxtec.top/tags/%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/
